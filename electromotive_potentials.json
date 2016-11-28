@@ -1,0 +1,283 @@
+{'oxidant': 'Sr+ + e−', 'potential': -4.1, 'reductant': 'Sr'}
+{'oxidant': 'Ca+ + e−', 'potential': -3.8, 'reductant': 'Ca'}
+{'oxidant': 'Pr3+ + e−', 'potential': -3.1, 'reductant': 'Pr2+'}
+{'oxidant': 'N3N2(g) + 2H+ + 2e−', 'potential': -3.09, 'reductant': '2HN3(aq)'}
+{'oxidant': 'Li+ + e−', 'potential': -3.0401, 'reductant': 'Li(s)'}
+{'oxidant': 'N2(g) + 4H2O + 2e−', 'potential': -3.04, 'reductant': '2NH2OH(aq) + 2OH−'}
+{'oxidant': 'Cs+ + e−', 'potential': -3.026, 'reductant': 'Cs(s)'}
+{'oxidant': 'Ca(OH)2 + 2e−', 'potential': -3.02, 'reductant': 'Ca + 2 OH−'}
+{'oxidant': 'Er3+ + e−', 'potential': -3, 'reductant': 'Er2+'}
+{'oxidant': 'Ba(OH)2 + 2e−', 'potential': -2.99, 'reductant': 'Ba + 2 OH−'}
+{'oxidant': 'Rb+ + e−', 'potential': -2.98, 'reductant': 'Rb(s)'}
+{'oxidant': 'K+ + e−', 'potential': -2.931, 'reductant': 'K(s)'}
+{'oxidant': 'Ba2+ + 2e−', 'potential': -2.912, 'reductant': 'Ba(s)'}
+{'oxidant': 'La(OH)3(s) + 3e−', 'potential': -2.9, 'reductant': 'La(s) + 3OH−'}
+{'oxidant': 'Fr+ + e−', 'potential': -2.9, 'reductant': 'Fr'}
+{'oxidant': 'Sr2+ + 2e−', 'potential': -2.899, 'reductant': 'Sr(s)'}
+{'oxidant': 'Sr(OH)2 + 2e−', 'potential': -2.88, 'reductant': 'Sr + 2 OH−'}
+{'oxidant': 'Ca2+ + 2e−', 'potential': -2.868, 'reductant': 'Ca(s)'}
+{'oxidant': 'Li+ + e−', 'potential': -2.84, 'reductant': 'LiC6(s)'}
+{'oxidant': 'Eu2+ + 2e−', 'potential': -2.812, 'reductant': 'Eu(s)'}
+{'oxidant': 'Ra2+ + 2e−', 'potential': -2.8, 'reductant': 'Ra(s)'}
+{'oxidant': 'Ho3+ + e−', 'potential': -2.8, 'reductant': 'Ho2+'}
+{'oxidant': 'Bk3+ + e−', 'potential': -2.8, 'reductant': 'Bk2+'}
+{'oxidant': 'Yb2+ + 2e−', 'potential': -2.76, 'reductant': 'Yb'}
+{'oxidant': 'Na+ + e−', 'potential': -2.71, 'reductant': 'Na(s)'}
+{'oxidant': 'Mg+ + e−', 'potential': -2.7, 'reductant': 'Mg'}
+{'oxidant': 'Nd3+ + e−', 'potential': -2.7, 'reductant': 'Nd2+'}
+{'oxidant': 'Mg(OH)2 + 2e−', 'potential': -2.69, 'reductant': 'Mg + 2 OH−'}
+{'oxidant': 'Sm2+ + 2e−', 'potential': -2.68, 'reductant': 'Sm'}
+{'oxidant': 'Be2O32− + 3 H2O + 4e−', 'potential': -2.63, 'reductant': '2 Be + 6 OH−'}
+{'oxidant': 'Pm3+ + e−', 'potential': -2.6, 'reductant': 'Pm2+'}
+{'oxidant': 'Dy3+ + e−', 'potential': -2.6, 'reductant': 'Dy2+'}
+{'oxidant': 'No2+ + 2e−', 'potential': -2.5, 'reductant': 'No'}
+{'oxidant': 'HfO(OH)2 + H2O + 4e−', 'potential': -2.5, 'reductant': 'Hf + 4 OH−'}
+{'oxidant': 'Th(OH)4 + 4e−', 'potential': -2.48, 'reductant': 'Th + 4 OH−'}
+{'oxidant': 'Md2+ + 2e−', 'potential': -2.4, 'reductant': 'Md'}
+{'oxidant': 'Tm2+ + 2e−', 'potential': -2.4, 'reductant': 'Tm'}
+{'oxidant': 'La3+ + 3e−', 'potential': -2.379, 'reductant': 'La(s)'}
+{'oxidant': 'Y3+ + 3e−', 'potential': -2.372, 'reductant': 'Y(s)'}
+{'oxidant': 'Mg2+ + 2e−', 'potential': -2.372, 'reductant': 'Mg(s)'}
+{'oxidant': 'ZrO(OH)2(s) + H2O + 4e−', 'potential': -2.36, 'reductant': 'Zr(s) + 4OH−'}
+{'oxidant': 'Pr3+ + 3e−', 'potential': -2.353, 'reductant': 'Pr'}
+{'oxidant': 'Ce3+ + 3e−', 'potential': -2.336, 'reductant': 'Ce'}
+{'oxidant': 'Er3+ + 3e−', 'potential': -2.331, 'reductant': 'Er'}
+{'oxidant': 'Ho3+ + 3e−', 'potential': -2.33, 'reductant': 'Ho'}
+{'oxidant': 'H2AlO3− + H2O + 3e−', 'potential': -2.33, 'reductant': 'Al + 4 OH−'}
+{'oxidant': 'Nd3+ + 3e−', 'potential': -2.323, 'reductant': 'Nd'}
+{'oxidant': 'Tm3+ + 3e−', 'potential': -2.319, 'reductant': 'Tm'}
+{'oxidant': 'Al(OH)3(s) + 3e−', 'potential': -2.31, 'reductant': 'Al(s) + 3OH−'}
+{'oxidant': 'Sm3+ + 3e−', 'potential': -2.304, 'reductant': 'Sm'}
+{'oxidant': 'Fm2+ + 2e−', 'potential': -2.3, 'reductant': 'Fm'}
+{'oxidant': 'Am3+ + e−', 'potential': -2.3, 'reductant': 'Am2+'}
+{'oxidant': 'Dy3+ + 3e−', 'potential': -2.295, 'reductant': 'Dy'}
+{'oxidant': 'Lu3+ + 3e−', 'potential': -2.28, 'reductant': 'Lu'}
+{'oxidant': 'Tb3+ + 3e−', 'potential': -2.28, 'reductant': 'Tb'}
+{'oxidant': 'Gd3+ + 3e−', 'potential': -2.279, 'reductant': 'Gd'}
+{'oxidant': 'H2 + 2e−', 'potential': -2.23, 'reductant': '2H−'}
+{'oxidant': 'Es2+ + 2e−', 'potential': -2.23, 'reductant': 'Es'}
+{'oxidant': 'Pm2+ + 2e−', 'potential': -2.2, 'reductant': 'Pm'}
+{'oxidant': 'Tm3+ + e−', 'potential': -2.2, 'reductant': 'Tm2+'}
+{'oxidant': 'Dy2+ + 2e−', 'potential': -2.2, 'reductant': 'Dy'}
+{'oxidant': 'Ac3+ + 3e−', 'potential': -2.2, 'reductant': 'Ac'}
+{'oxidant': 'Yb3+ + 3e−', 'potential': -2.19, 'reductant': 'Yb'}
+{'oxidant': 'Cf2+ + 2e−', 'potential': -2.12, 'reductant': 'Cf'}
+{'oxidant': 'Nd2+ + 2e−', 'potential': -2.1, 'reductant': 'Nd'}
+{'oxidant': 'Ho2+ + 2e−', 'potential': -2.1, 'reductant': 'Ho'}
+{'oxidant': 'Sc3+ + 3e−', 'potential': -2.077, 'reductant': 'Sc(s)'}
+{'oxidant': 'AlF63− + 3e−', 'potential': -2.069, 'reductant': 'Al + 6 F−'}
+{'oxidant': 'Am3+ + 3e−', 'potential': -2.048, 'reductant': 'Am'}
+{'oxidant': 'Cm3+ + 3e−', 'potential': -2.04, 'reductant': 'Cm'}
+{'oxidant': 'Pu3+ + 3e−', 'potential': -2.031, 'reductant': 'Pu'}
+{'oxidant': 'Pr2+ + 2e−', 'potential': -2, 'reductant': 'Pr'}
+{'oxidant': 'Er2+ + 2e−', 'potential': -2, 'reductant': 'Er'}
+{'oxidant': 'Eu3+ + 3e−', 'potential': -1.991, 'reductant': 'Eu'}
+{'oxidant': 'Lr3+ + 3e−', 'potential': -1.96, 'reductant': 'Lr'}
+{'oxidant': 'Cf3+ + 3e−', 'potential': -1.94, 'reductant': 'Cf'}
+{'oxidant': 'Es3+ + 3e−', 'potential': -1.91, 'reductant': 'Es'}
+{'oxidant': 'Pa4+ + e−', 'potential': -1.9, 'reductant': 'Pa3+'}
+{'oxidant': 'Am2+ + 2e−', 'potential': -1.9, 'reductant': 'Am'}
+{'oxidant': 'Th4+ + 4e−', 'potential': -1.899, 'reductant': 'Th'}
+{'oxidant': 'Fm3+ + 3e−', 'potential': -1.89, 'reductant': 'Fm'}
+{'oxidant': 'Np3+ + 3e−', 'potential': -1.856, 'reductant': 'Np'}
+{'oxidant': 'Be2+ + 2e−', 'potential': -1.847, 'reductant': 'Be'}
+{'oxidant': 'H2PO2− + e−', 'potential': -1.82, 'reductant': 'P + 2 OH−'}
+{'oxidant': 'U3+ + 3e−', 'potential': -1.798, 'reductant': 'U'}
+{'oxidant': 'Sr2+ + 2e−', 'potential': -1.793, 'reductant': 'Sr/Hg'}
+{'oxidant': 'H2BO3− + H2O + 3e−', 'potential': -1.79, 'reductant': 'B + 4 OH−'}
+{'oxidant': 'ThO2 + 4H+ + 4e−', 'potential': -1.789, 'reductant': 'Th + 2 H2O'}
+{'oxidant': 'HfO2+ + 2 H+ + 4e−', 'potential': -1.724, 'reductant': 'Hf + H2O'}
+{'oxidant': 'HPO32− + 2 H2O + 3e−', 'potential': -1.71, 'reductant': 'P + 5 OH−'}
+{'oxidant': 'SiO32− + H2O + 4e−', 'potential': -1.697, 'reductant': 'Si + 6 OH−'}
+{'oxidant': 'Al3+ + 3e−', 'potential': -1.662, 'reductant': 'Al(s)'}
+{'oxidant': 'Ti2+ + 2e−', 'potential': -1.63, 'reductant': 'Ti(s)'}
+{'oxidant': 'ZrO2(s) + 4H+ + 4e−', 'potential': -1.553, 'reductant': 'Zr(s) + 2H2O'}
+{'oxidant': 'Zr4+ + 4e−', 'potential': -1.45, 'reductant': 'Zr(s)'}
+{'oxidant': 'Ti3+ + 3e−', 'potential': -1.37, 'reductant': 'Ti(s)'}
+{'oxidant': 'TiO(s) + 2H+ + 2e−', 'potential': -1.31, 'reductant': 'Ti(s) + H2O'}
+{'oxidant': 'Ti2O3(s) + 2H+ + 2e−', 'potential': -1.23, 'reductant': '2TiO(s) + H2O'}
+{'oxidant': 'Zn(OH)42− + 2e−', 'potential': -1.199, 'reductant': 'Zn(s) + 4OH−'}
+{'oxidant': 'Mn2+ + 2e−', 'potential': -1.185, 'reductant': 'Mn(s)'}
+{'oxidant': 'Fe(CN)64− + 6H+ + 2 e−', 'potential': -1.16, 'reductant': 'Fe(s) + 6HCN(aq)'}
+{'oxidant': 'Te(s) + 2e−', 'potential': -1.143, 'reductant': 'Te2−'}
+{'oxidant': 'V2+ + 2e−', 'potential': -1.13, 'reductant': 'V(s)'}
+{'oxidant': 'Nb3+ + 3e−', 'potential': -1.099, 'reductant': 'Nb(s)'}
+{'oxidant': 'Sn(s) + 4H+ + 4e−', 'potential': -1.07, 'reductant': 'SnH4(g)'}
+{'oxidant': 'SiO2(s) + 4H+ + 4e−', 'potential': -0.91, 'reductant': 'Si(s) + 2H2O'}
+{'oxidant': 'B(OH)3(aq) + 3H+ + 3e−', 'potential': -0.89, 'reductant': 'B(s) + 3H2O'}
+{'oxidant': 'Fe(OH)2(s) + 2e−', 'potential': -0.89, 'reductant': 'Fe(s) + 2OH−'}
+{'oxidant': 'Fe2O3(s) + 3H2O + 2e−', 'potential': -0.86, 'reductant': '2Fe(OH)2(s) + 2OH−'}
+{'oxidant': 'TiO2+ + 2H+ + 4e−', 'potential': -0.86, 'reductant': 'Ti(s) + H2O'}
+{'oxidant': 'H2H2O + 2e−', 'potential': -0.8277, 'reductant': 'H2(g) + 2OH−'}
+{'oxidant': 'Bi(s) + 3H+ + 3e−', 'potential': -0.8, 'reductant': 'BiH3'}
+{'oxidant': 'Zn2+ + 2e−', 'potential': -0.7628, 'reductant': 'Zn(Hg)'}
+{'oxidant': 'Zn2+ + 2e−', 'potential': -0.7618, 'reductant': 'Zn(s)'}
+{'oxidant': 'Ta2O5(s) + 10H+ + 10e−', 'potential': -0.75, 'reductant': '2Ta(s) + 5H2O'}
+{'oxidant': 'Cr3+ + 3e−', 'potential': -0.74, 'reductant': 'Cr(s)'}
+{'oxidant': 'Ag2S(s) + 2e−', 'potential': -0.69, 'reductant': '2Ag(s) + S2-(aq)'}
+{'oxidant': 'Au[Au(CN)2]− + e−', 'potential': -0.6, 'reductant': 'Au(s) + 2CN−'}
+{'oxidant': 'Ta3+ + 3e−', 'potential': -0.6, 'reductant': 'Ta(s)'}
+{'oxidant': 'PbO(s) + H2O + 2e−', 'potential': -0.58, 'reductant': 'Pb(s) + 2OH−'}
+{'oxidant': 'Ti2TiO2(s) + 2H+ + 2e−', 'potential': -0.56, 'reductant': 'Ti2O3(s) + H2O'}
+{'oxidant': 'Ga3+ + 3e−', 'potential': -0.53, 'reductant': 'Ga(s)'}
+{'oxidant': 'U4+ + e−', 'potential': -0.52, 'reductant': 'U3+'}
+{'oxidant': 'P H3PO2(aq) + H+ + e−', 'potential': -0.508, 'reductant': 'P(white)[note 1] + 2H2O'}
+{'oxidant': 'P H3PO3(aq) + 2H+ + 2e−', 'potential': -0.499, 'reductant': 'H3PO2(aq) + H2O'}
+{'oxidant': 'P H3PO3(aq) + 3H+ + 3e−', 'potential': -0.454, 'reductant': 'P(red)[note 1] + 3H2O'}
+{'oxidant': 'Fe2+ + 2e−', 'potential': -0.44, 'reductant': 'Fe(s)'}
+{'oxidant': 'C2CO2(g) + 2H+ + 2e−', 'potential': -0.43, 'reductant': 'HOOCCOOH(aq)'}
+{'oxidant': 'Cr3+ + e−', 'potential': -0.42, 'reductant': 'Cr2+'}
+{'oxidant': 'Cd2+ + 2e−', 'potential': -0.4, 'reductant': 'Cd(s)'}
+{'oxidant': 'GeO2(s) + 2H+ + 2e−', 'potential': -0.37, 'reductant': 'GeO(s) + H2O'}
+{'oxidant': 'Cu2O(s) + H2O + 2e−', 'potential': -0.36, 'reductant': '2Cu(s) + 2OH−'}
+{'oxidant': 'PbSO4(s) + 2e−', 'potential': -0.3588, 'reductant': 'Pb(s) + SO42−'}
+{'oxidant': 'PbSO4(s) + 2e−', 'potential': -0.3505, 'reductant': 'Pb(Hg) + SO42−'}
+{'oxidant': 'Eu3+ + e−', 'potential': -0.35, 'reductant': 'Eu2+'}
+{'oxidant': 'In3+ + 3e−', 'potential': -0.34, 'reductant': 'In(s)'}
+{'oxidant': 'Tl+ + e−', 'potential': -0.34, 'reductant': 'Tl(s)'}
+{'oxidant': 'Ge(s) + 4H+ + 4e−', 'potential': -0.29, 'reductant': 'GeH4(g)'}
+{'oxidant': 'Co2+ + 2e−', 'potential': -0.28, 'reductant': 'Co(s)'}
+{'oxidant': 'P H3PO4(aq) + 2H+ + 2e−', 'potential': -0.276, 'reductant': 'H3PO3(aq) + H2O'}
+{'oxidant': 'V3+ + e−', 'potential': -0.26, 'reductant': 'V2+'}
+{'oxidant': 'Ni2+ + 2e−', 'potential': -0.25, 'reductant': 'Ni(s)'}
+{'oxidant': 'As(s) + 3H+ + 3e−', 'potential': -0.23, 'reductant': 'AsH3(g)'}
+{'oxidant': 'AgI(s) + e−', 'potential': -0.15224, 'reductant': 'Ag(s) + I−'}
+{'oxidant': 'MoO2(s) + 4H+ + 4e−', 'potential': -0.15, 'reductant': 'Mo(s) + 2H2O'}
+{'oxidant': 'Si(s) + 4H+ + 4e−', 'potential': -0.14, 'reductant': 'SiH4(g)'}
+{'oxidant': 'Sn2+ + 2e−', 'potential': -0.13, 'reductant': 'Sn(s)'}
+{'oxidant': 'O2(g) + H+ + e−', 'potential': -0.13, 'reductant': 'HO2•(aq)'}
+{'oxidant': 'Pb2+ + 2e−', 'potential': -0.126, 'reductant': 'Pb(s)'}
+{'oxidant': 'WO2(s) + 4H+ + 4e−', 'potential': -0.12, 'reductant': 'W(s) + 2H2O'}
+{'oxidant': 'P(red) + 3H+ + 3e−', 'potential': -0.111, 'reductant': 'PH3(g)'}
+{'oxidant': 'C CO2(g) + 2H+ + 2e−', 'potential': -0.11, 'reductant': 'HCOOH(aq)'}
+{'oxidant': 'Se(s) + 2H+ + 2e−', 'potential': -0.11, 'reductant': 'H2Se(g)'}
+{'oxidant': 'C CO2(g) + 2H+ + 2e−', 'potential': -0.11, 'reductant': 'CO(g) + H2O'}
+{'oxidant': 'SnO(s) + 2H+ + 2e−', 'potential': -0.1, 'reductant': 'Sn(s) + H2O'}
+{'oxidant': 'SnO2(s) + 4H+ + 4e−', 'potential': -0.09, 'reductant': 'SnO(s) + 2H2O'}
+{'oxidant': 'WO3(aq) + 6H+ + 6e−', 'potential': -0.09, 'reductant': 'W(s) + 3H2O'}
+{'oxidant': 'P(white) + 3H+ + 3e−', 'potential': -0.063, 'reductant': 'PH3(g)'}
+{'oxidant': 'Fe3+ + 3e−', 'potential': -0.04, 'reductant': 'Fe(s)'}
+{'oxidant': 'C HCOOH(aq) + 2H+ + 2e−', 'potential': -0.03, 'reductant': 'HCHO(aq) + H2O'}
+{'oxidant': 'H 2H+ + 2e−', 'potential': 0, 'reductant': 'H2(g)'}
+{'oxidant': 'AgBr(s) + e−', 'potential': 0.07133, 'reductant': 'Ag(s) + Br−'}
+{'oxidant': 'S4O62− + 2e−', 'potential': 0.08, 'reductant': '2S2O32−'}
+{'oxidant': 'Fe3O4(s) + 8H+ + 8e−', 'potential': 0.085, 'reductant': '3Fe(s) + 4H2O'}
+{'oxidant': 'N2(g) + 2H2O + 6H+ + 6e−', 'potential': 0.092, 'reductant': '2NH4OH(aq)'}
+{'oxidant': 'HgO(s) + H2O + 2e−', 'potential': 0.0977, 'reductant': 'Hg(l) + 2OH−'}
+{'oxidant': 'Cu(NH3)42+ + e−', 'potential': 0.1, 'reductant': 'Cu(NH3)2+ + 2NH3'}
+{'oxidant': 'Ru(NH3)63+ + e−', 'potential': 0.1, 'reductant': 'Ru(NH3)62+'}
+{'oxidant': 'N2H4(aq) + 4H2O + 2e−', 'potential': 0.11, 'reductant': '2NH4+ + 4OH−'}
+{'oxidant': 'Mo H2MoO4(aq) + 6H+ + 6e−', 'potential': 0.11, 'reductant': 'Mo(s) + 4H2O'}
+{'oxidant': 'Ge4+ + 4e−', 'potential': 0.12, 'reductant': 'Ge(s)'}
+{'oxidant': 'C(s) + 4H+ + 4e−', 'potential': 0.13, 'reductant': 'CH4(g)'}
+{'oxidant': 'C HCHO(aq) + 2H+ + 2e−', 'potential': 0.13, 'reductant': 'CH3OH(aq)'}
+{'oxidant': 'S(s) + 2H+ + 2e−', 'potential': 0.14, 'reductant': 'H2S(g)'}
+{'oxidant': 'Sn4+ + 2e−', 'potential': 0.15, 'reductant': 'Sn2+'}
+{'oxidant': 'Cu2+ + e−', 'potential': 0.159, 'reductant': 'Cu+'}
+{'oxidant': 'S HSO4− + 3H+ + 2e−', 'potential': 0.16, 'reductant': 'SO2(aq) + 2H2O'}
+{'oxidant': 'UO22+ + e−', 'potential': 0.163, 'reductant': 'UO2+'}
+{'oxidant': 'S SO42− + 4H+ + 2e−', 'potential': 0.17, 'reductant': 'SO2(aq) + 2H2O'}
+{'oxidant': 'TiO2+ + 2H+ + e−', 'potential': 0.19, 'reductant': 'Ti3+ + H2O'}
+{'oxidant': 'SbO+ + 2H+ + 3e−', 'potential': 0.2, 'reductant': 'Sb(s) + H2O'}
+{'oxidant': 'AgCl(s) + e−', 'potential': 0.22233, 'reductant': 'Ag(s) + Cl−'}
+{'oxidant': 'As H3AsO3(aq) + 3H+ + 3e−', 'potential': 0.24, 'reductant': 'As(s) + 3H2O'}
+{'oxidant': 'GeO(s) + 2H+ + 2e−', 'potential': 0.26, 'reductant': 'Ge(s) + H2O'}
+{'oxidant': 'UO2+ + 4H+ + e−', 'potential': 0.273, 'reductant': 'U4+ + 2H2O'}
+{'oxidant': 'Re3+ + 3e−', 'potential': 0.3, 'reductant': 'Re(s)'}
+{'oxidant': 'Bi3+ + 3e−', 'potential': 0.308, 'reductant': 'Bi(s)'}
+{'oxidant': 'Cu2+ + 2e−', 'potential': 0.337, 'reductant': 'Cu(s)'}
+{'oxidant': 'VO2+ + 2H+ + e−', 'potential': 0.34, 'reductant': 'V3+ + H2O'}
+{'oxidant': 'Fe [Fe(CN)6]3− + e−', 'potential': 0.36, 'reductant': '[Fe(CN)6]4−'}
+{'oxidant': 'Fc+ + e−', 'potential': 0.4, 'reductant': 'Fc(s)'}
+{'oxidant': 'O2(g) + 2H2O + 4e−', 'potential': 0.401, 'reductant': '4OH−(aq)'}
+{'oxidant': 'Mo H2MoO4 + 6H+ + 3e−', 'potential': 0.43, 'reductant': 'Mo3+ + 2H2O'}
+{'oxidant': 'C CH3OH(aq) + 2H+ + 2e−', 'potential': 0.5, 'reductant': 'CH4(g) + H2O'}
+{'oxidant': 'S SO2(aq) + 4H+ + 4e−', 'potential': 0.5, 'reductant': 'S(s) + 2H2O'}
+{'oxidant': 'Cu+ + e−', 'potential': 0.52, 'reductant': 'Cu(s)'}
+{'oxidant': 'C CO(g) + 2H+ + 2e−', 'potential': 0.52, 'reductant': 'C(s) + H2O'}
+{'oxidant': 'I3− + 2e−', 'potential': 0.53, 'reductant': '3I−'}
+{'oxidant': 'I2(s) + 2e−', 'potential': 0.54, 'reductant': '2I−'}
+{'oxidant': 'Au [AuI4]− + 3e−', 'potential': 0.56, 'reductant': 'Au(s) + 4I−'}
+{'oxidant': 'As H3AsO4(aq) + 2H+ + 2e−', 'potential': 0.56, 'reductant': 'H3AsO3(aq) + H2O'}
+{'oxidant': 'Au [AuI2]− + e−', 'potential': 0.58, 'reductant': 'Au(s) + 2I−'}
+{'oxidant': 'MnO4− + 2H2O + 3e−', 'potential': 1.692, 'reductant': 'MnO2(s) + 4OH−'}
+{'oxidant': 'S2O32− + 6H+ + 4e−', 'potential': 0.6, 'reductant': '2S(s) + 3H2O'}
+{'oxidant': 'Mo H2MoO4(aq) + 2H+ + 2e−', 'potential': 0.65, 'reductant': 'MoO2(s) + 2H2O'}
+{'oxidant': 'C  + 2H+ + 2e−', 'potential': 0.6992, 'reductant': 'n/a'}
+{'oxidant': 'O2(g) + 2H+ + 2e−', 'potential': 0.7, 'reductant': 'H2O2(aq)'}
+{'oxidant': 'Tl3+ + 3e−', 'potential': 0.72, 'reductant': 'Tl(s)'}
+{'oxidant': 'PtCl62− + 2e−', 'potential': 0.726, 'reductant': 'PtCl42− + 2Cl−'}
+{'oxidant': 'Se H2SeO3(aq) + 4H+ + 4e−', 'potential': 0.74, 'reductant': 'Se(s) + 3H2O'}
+{'oxidant': 'PtCl42− + 2e−', 'potential': 0.758, 'reductant': 'Pt(s) + 4Cl−'}
+{'oxidant': 'Fe3+ + e−', 'potential': 0.77, 'reductant': 'Fe2+'}
+{'oxidant': 'Ag+ + e−', 'potential': 0.7996, 'reductant': 'Ag(s)'}
+{'oxidant': 'Hg22+ + 2e−', 'potential': 0.8, 'reductant': '2Hg(l)'}
+{'oxidant': 'N NO3−(aq) + 2H+ + e−', 'potential': 0.8, 'reductant': 'NO2(g) + H2O'}
+{'oxidant': 'Fe 2FeO42− + 5H2O + 6e−', 'potential': 0.81, 'reductant': 'Fe2O3(s) + 10 OH−'}
+{'oxidant': 'Au [AuBr4]− + 3e−', 'potential': 0.85, 'reductant': 'Au(s) + 4Br−'}
+{'oxidant': 'Hg2+ + 2e−', 'potential': 0.85, 'reductant': 'Hg(l)'}
+{'oxidant': 'Ir [IrCl6]2− + e−', 'potential': 0.87, 'reductant': '[IrCl6]3−'}
+{'oxidant': 'MnO4− + H+ + e−', 'potential': 0.9, 'reductant': 'HMnO4−'}
+{'oxidant': 'Hg2Hg2+ + 2e−', 'potential': 0.91, 'reductant': 'Hg22+'}
+{'oxidant': 'Pd2+ + 2e−', 'potential': 0.915, 'reductant': 'Pd(s)'}
+{'oxidant': 'Au [AuCl4]− + 3e−', 'potential': 0.93, 'reductant': 'Au(s) + 4Cl−'}
+{'oxidant': 'MnO2(s) + 4H+ + e−', 'potential': 0.95, 'reductant': 'Mn3+ + 2H2O'}
+{'oxidant': 'NO3−(aq) + 4H+ + 3e−', 'potential': 0.958, 'reductant': 'NO(g) + 2H2O(l)'}
+{'oxidant': 'Au[AuBr2]− + e−', 'potential': 0.96, 'reductant': 'Au(s) + 2Br−'}
+{'oxidant': 'Xe[HXeO6]3− + 2H2O + 2e− +', 'potential': 0.99, 'reductant': '[HXeO4]− + 4OH−'}
+{'oxidant': '[VO2]+(aq) + 2H+ + e−', 'potential': 1, 'reductant': '[VO]2+(aq) + H2O'}
+{'oxidant': 'TeH6TeO6(aq) + 2H+ + 2e−', 'potential': 1.02, 'reductant': 'TeO2(s) + 4H2O'}
+{'oxidant': 'Br2(l) + 2e−', 'potential': 1.066, 'reductant': '2Br−'}
+{'oxidant': 'Br2(aq) + 2e−', 'potential': 1.0873, 'reductant': '2Br−'}
+{'oxidant': 'I IO3− + 5H+ + 4e−', 'potential': 1.13, 'reductant': 'HIO(aq) + 2H2O'}
+{'oxidant': 'Au [AuCl2]− + e−', 'potential': 1.15, 'reductant': 'Au(s) + 2Cl−'}
+{'oxidant': 'Se HSeO4− + 3H+ + 2e−', 'potential': 1.15, 'reductant': 'H2SeO3(aq) + H2O'}
+{'oxidant': 'Ag2O(s) + 2H+ + 2e−', 'potential': 1.17, 'reductant': '2Ag(s) + H2O'}
+{'oxidant': 'ClO3− + 2H+ + e−', 'potential': 1.18, 'reductant': 'ClO2(g) + H2O'}
+{'oxidant': 'Xe[HXeO6]3− + 5H2O + 8 e−', 'potential': 1.18, 'reductant': 'Xe(g) + 11OH−'}
+{'oxidant': 'Pt2+ + 2e−', 'potential': 1.188, 'reductant': 'Pt(s)'}
+{'oxidant': 'ClO2(g) + H+ + e−', 'potential': 1.19, 'reductant': 'HClO2(aq)'}
+{'oxidant': 'I 2IO3− + 12H+ + 10e−', 'potential': 1.2, 'reductant': 'I2(s) + 6H2O'}
+{'oxidant': 'ClO4− + 2H+ + 2e−', 'potential': 1.2, 'reductant': 'ClO3− + H2O'}
+{'oxidant': 'O2(g) + 4H+ + 4e−', 'potential': 1.229, 'reductant': '2H2O'}
+{'oxidant': 'MnO2(s) + 4H+ + 2e−', 'potential': 1.23, 'reductant': 'Mn2+ + 2H2O'}
+{'oxidant': 'Xe[HXeO4]− + 3H2O + 6 e−', 'potential': 1.24, 'reductant': 'Xe(g) + 7OH−'}
+{'oxidant': 'Tl3+ + 2e−', 'potential': 1.25, 'reductant': 'Tl+'}
+{'oxidant': 'Cr2O72− + 14H+ + 6e−', 'potential': 1.33, 'reductant': '2Cr3+ + 7H2O'}
+{'oxidant': 'Cl2(g) + 2e−', 'potential': 1.36, 'reductant': '2Cl−'}
+{'oxidant': 'CoO2(s) + 4H+ + e−', 'potential': 1.42, 'reductant': 'Co3+ + 2H2O'}
+{'oxidant': 'N 2NH3OH+ + H+ + 2e−', 'potential': 1.42, 'reductant': 'N2H5+ + 2H2O'}
+{'oxidant': 'I 2HIO(aq) + 2H+ + 2e−', 'potential': 1.44, 'reductant': 'I2(s) + 2H2O'}
+{'oxidant': 'BrO3− + 5H+ + 4e−', 'potential': 1.45, 'reductant': 'HBrO(aq) + 2H2O'}
+{'oxidant': 'PbO β-PbO2(s) + 4H+ + 2e−', 'potential': 1.46, 'reductant': 'Pb2+ + 2H2O'}
+{'oxidant': 'PbO α-PbO2(s) + 4H+ + 2e−', 'potential': 1.468, 'reductant': 'Pb2+ + 2H2O'}
+{'oxidant': 'Br 2BrO3− + 12H+ + 10e−', 'potential': 1.48, 'reductant': 'Br2(l) + 6H2O'}
+{'oxidant': 'Cl 2ClO3− + 12H+ + 10e−', 'potential': 1.49, 'reductant': 'Cl2(g) + 6H2O'}
+{'oxidant': 'Cl HClO(aq) + H+ + 2e−', 'potential': 1.49, 'reductant': 'Cl−(aq) + H2O'}
+{'oxidant': 'MnO4− + 8H+ + 5e−', 'potential': 1.51, 'reductant': 'Mn2+ + 4H2O'}
+{'oxidant': 'O HO2• + H+ + e−', 'potential': 1.51, 'reductant': 'H2O2(aq)'}
+{'oxidant': 'Au3+ + 3e−', 'potential': 1.52, 'reductant': 'Au(s)'}
+{'oxidant': 'NiO2(s) + 4H+ + 2e−', 'potential': 1.59, 'reductant': 'Ni2+ + 2OH−'}
+{'oxidant': 'Ce4+ + e−', 'potential': 1.61, 'reductant': 'Ce3+'}
+{'oxidant': 'Cl 2HClO(aq) + 2H+ + 2e−', 'potential': 1.63, 'reductant': 'Cl2(g) + 2H2O'}
+{'oxidant': 'Ag2O3(s) + 6H+ + 4e−', 'potential': 1.67, 'reductant': '2Ag+ + 3H2O'}
+{'oxidant': 'Cl HClO2(aq) + 2H+ + 2e−', 'potential': 1.67, 'reductant': 'HClO(aq) + H2O'}
+{'oxidant': 'Pb4+ + 2e−', 'potential': 1.69, 'reductant': 'Pb2+'}
+{'oxidant': 'MnO4− + 4H+ + 3e−', 'potential': 1.7, 'reductant': 'MnO2(s) + 2H2O'}
+{'oxidant': 'AgO(s) + 2H+ + e−', 'potential': 1.77, 'reductant': 'Ag+ + H2O'}
+{'oxidant': 'O H2O2(aq) + 2H+ + 2e−', 'potential': 1.78, 'reductant': '2H2O'}
+{'oxidant': 'Co3+ + e−', 'potential': 1.82, 'reductant': 'Co2+'}
+{'oxidant': 'Au+ + e−', 'potential': 1.83, 'reductant': 'Au(s)'}
+{'oxidant': 'BrO4− + 2H+ + 2e−', 'potential': 1.85, 'reductant': 'BrO3− + H2O'}
+{'oxidant': 'Ag2+ + e−', 'potential': 1.98, 'reductant': 'Ag+'}
+{'oxidant': 'S2O82− + 2e−', 'potential': 2.01, 'reductant': '2SO42−'}
+{'oxidant': 'O3(g) + 2H+ + 2e−', 'potential': 2.075, 'reductant': 'O2(g) + H2O'}
+{'oxidant': 'Mn HMnO4− + 3H+ + 2e−', 'potential': 2.09, 'reductant': 'MnO2(s) + 2H2O'}
+{'oxidant': 'XeO3(aq) + 6H+ + 6 e−', 'potential': 2.12, 'reductant': 'Xe(g) + 3H2O'}
+{'oxidant': 'XeH4XeO6(aq) + 8H+ + 8 e−', 'potential': 2.18, 'reductant': 'Xe(g) + 6 H2O'}
+{'oxidant': 'FeO42− + 3e− + 8H+', 'potential': 2.2, 'reductant': 'Fe3+ + 4H2O'}
+{'oxidant': 'XeF2(aq) + 2H+ + 2e−', 'potential': 2.32, 'reductant': 'Xe(g) + 2HF(aq)'}
+{'oxidant': 'XeH4XeO6(aq) + 2H+ + 2e−', 'potential': 2.42, 'reductant': 'XeO3(aq) + 3H2O'}
+{'oxidant': 'F2(g) + 2e−', 'potential': 2.87, 'reductant': '2F−'}
+{'oxidant': 'F2(g) + 2H+ + 2e−', 'potential': 3.05, 'reductant': '2HF(aq)'}
+{'oxidant': 'KrF2(aq) + 2e−', 'potential': 3.27, 'reductant': 'Kr(g) + 2F−(aq)'}
