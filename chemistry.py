@@ -1,5 +1,30 @@
 import sys, ast
 
+def get_file_contents(filepath):
+    try:
+        with open(filepath, 'r', encoding="utf8") as fp:
+            return fp.read()
+    except:
+        return ''
+
+def load_json_database(filepath):
+    contents, json_data = get_file_contents(filepath), []
+    if len(contents) < 1:
+        print('test')
+        return []
+    contents = contents.split('\n')
+    for content in contents:
+        try:
+            json_row = ast.literal_eval(content)
+            json_data.append(json_row)
+        except:
+            pass
+    return json_data
+
+periodic_table = load_json_database('periodic_table.json')
+reactivity_series = load_json_database('reactivity_series.json')
+electromotive_potentials = load_json_database('electromotive_potentials.json')
+
 absolute_zero = -273.15
 
 def celcius_to_farenheit(temperature):
@@ -71,43 +96,65 @@ def get_reaction_components(formula):
         result[1].append(get_substance_components(right_components[c]))
     return result
 
-def get_file_contents(filepath):
-    try:
-        with open(filepath, 'r', encoding="utf8") as fp:
-            return fp.read()
-    except:
+def molarity(moles, liters):
+    return moles / liters
+
+def moles(mass, substance):
+    return
+
+def max_reactivity(metal_one, metal_two):
+    if metal_one == metal_two:
+        return metal_one
+    metal_one_row, metal_two_row = -1, -1
+    for row in range(len(reactivity_series)):
+        if metal_one == reactivity_series[row]['symbol'] or metal_one == reactivity_series[row]['name']:
+            metal_one_row = row
+        if metal_two == reactivity_series[row]['symbol'] or metal_two == reactivity_series[row]['name']:
+            metal_two_row = row
+    print(metal_one_row, metal_two_row)
+    if metal_one_row < 0 or metal_two_row < 0:
         return ''
+    if metal_one_row == metal_two_row:
+        return metal_one
+    if metal_one_row < metal_two_row:
+        return metal_one
+    else:
+        return metal_two
 
-def load_json_database(filepath):
-    contents, json_data = get_file_contents(filepath), []
-    if len(contents) < 1:
-        print('test')
-        return []
-    contents = contents.split('\n')
-    for content in contents:
-        try:
-            json_row = ast.literal_eval(content)
-            json_data.append(json_row)
-        except:
-            pass
-    return json_data
+def locate_periodic_table_row(search_term, key=None):
+    if key != None:
+        for row in range(len(periodic_table)):
+            if str(search_term) == str(periodic_table[row][key]):
+                return row
+        for row in range(len(periodic_table)):
+            if str(search_term) in str(periodic_table[row][key]):
+                return row
+        return -1
+    for row in range(len(periodic_table)):
+        if type(search_term) is int:
+            if search_term == periodic_table[row]['number'] or search_term == periodic_table[row]['atomic_number']:
+                return row
+        elif type(search_term) is str:
+            if search_term == periodic_table[row]['name'] or search_term == periodic_table[row]['symbol']:
+                return row
+    for row in range(len(periodic_table)):
+        for k in periodic_table[row]:
+            if str(search_term) in str(periodic_table[row][k]):
+                return row
+    return -1
 
-def is_valid_reaction(formula):
-    if '->' not in formula:
-        return False
+def get_periodic_table_details_list():
+    return [key for key in periodic_table[0]]
     
 if __name__ == '__main__':
-    periodic_table = load_json_database('periodic_table.json')
-    reactivity_series = load_json_database('reactivity_series.json')
-    electromotive_potentials = load_json_database('electromotive_potentials.json')
     print(get_reaction_components('2Al + 3CuSO4 -> Al2(SO4)3 + 3Cu'))
-    print()
-    for element in [[element['name'], element['electron_configuration'], element['boiling_point']] for element in periodic_table]:
-        print(''.join(['{}, '.format(detail) for detail in element])[:-2])
-    print()
-    for row in reactivity_series:
-        print(row)
-    print()
-    for row in electromotive_potentials:
-        print(row)
+##    print()
+##    for element in [[element['name'], element['electron_configuration'], element['boiling_point']] for element in periodic_table]:
+##        print(''.join(['{}, '.format(detail) for detail in element])[:-2])
+##    print()
+##    for row in reactivity_series:
+##        print(row)
+##    print()
+##    for row in electromotive_potentials:
+##        print(row)
 	
