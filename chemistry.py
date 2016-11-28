@@ -96,12 +96,6 @@ def get_reaction_components(formula):
         result[1].append(get_substance_components(right_components[c]))
     return result
 
-def molarity(moles, liters):
-    return moles / liters
-
-def moles(mass, substance):
-    return
-
 def max_reactivity(metal_one, metal_two):
     if metal_one == metal_two:
         return metal_one
@@ -111,7 +105,6 @@ def max_reactivity(metal_one, metal_two):
             metal_one_row = row
         if metal_two == reactivity_series[row]['symbol'] or metal_two == reactivity_series[row]['name']:
             metal_two_row = row
-    print(metal_one_row, metal_two_row)
     if metal_one_row < 0 or metal_two_row < 0:
         return ''
     if metal_one_row == metal_two_row:
@@ -145,6 +138,19 @@ def locate_periodic_table_row(search_term, key=None):
 
 def get_periodic_table_details_list():
     return [key for key in periodic_table[0]]
+
+def molar_mass(substance):
+    components, molar_mass = get_substance_components(substance), 0
+    for component in components:
+        row = locate_periodic_table_row(component)
+        molar_mass += periodic_table[row]['atomic_weight']
+    return molar_mass
+
+def moles(mass, substance):
+    return mass / molar_mass(substance)
+
+def molarity(mass, substance, liters):
+    return moles(mass, substance) / liters
     
 if __name__ == '__main__':
     print(get_reaction_components('2Al + 3CuSO4 -> Al2(SO4)3 + 3Cu'))
