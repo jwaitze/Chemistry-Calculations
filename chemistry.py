@@ -51,6 +51,20 @@ def moles_to_atoms(moles):
 def atoms_to_moles(atoms):
     atoms / (6.0221 * (10**23))
 
+def break_element_object(element_object):
+    element, element_start, element_length = {'front': 1, 'element': '', 'back': 1}, 0, 0
+    for c in range(len(element_object)):
+        if element_object[c].isupper():
+            element_start, element_length = c, 1
+        elif element_object[c].islower():
+            element_length += 1
+    element['element'] = element_object[element_start:element_length+1]
+    if element_start != 0:
+        element['front'] = int(element_object[:element_start])
+    if len(element_object) > len(str(element['front'])) + len(element['element']):
+        element['back'] = element_object[element_start + element_length:]
+    return element
+
 def get_substance_components(substance):
     if ' ' in substance or '+' in substance or '-' in substance or '>' in substance or len(substance) < 1:
         return []
@@ -68,7 +82,7 @@ def get_substance_components(substance):
             components[-1].append(c)
     components = [''.join(component) for component in components]
     if coefficient != '1':
-        components = [coefficient + component for component in components]
+        components = [break_element_object(coefficient + component) for component in components]
     return components
 
 def get_reaction_components(formula):
@@ -153,7 +167,15 @@ def molarity(mass, substance, liters):
     return moles(mass, substance) / liters
     
 if __name__ == '__main__':
-    print(get_reaction_components('2Al + 3CuSO4 -> Al2(SO4)3 + 3Cu'))
+    left_components, right_components = get_reaction_components('2Al + 3CuSO4')
+    if len(left_components):
+        for component in left_components:
+            print(component)
+    print()
+    if len(right_components):
+        for component in right_components:
+            print(component)
+    
 ##    print()
 ##    for element in [[element['name'], element['electron_configuration'], element['boiling_point']] for element in periodic_table]:
 ##        print(''.join(['{}, '.format(detail) for detail in element])[:-2])
