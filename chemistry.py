@@ -233,7 +233,7 @@ def mm_to_in(mm):
 
 def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2):
     R = 0.0821
-    P1, V1, n1, T1, P2, V2, n2, T2 = [-1 if a == None else a for a in [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2]]
+    P1, V1, n1, T1, P2, V2 ,n2, T2 = [-1 if a == None else a for a in [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2]]
     numerator_left, denominator_left = P1 * V1, P2 * V2
     numerator_right, denominator_right = n1 * R * T1, n2 * R * T2
     if numerator_left < 0:
@@ -246,7 +246,7 @@ def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2,
         return (numerator_right / (numerator_left / denominator_left)) / (denominator_right * -1)
 
 def ideal_gas(atm, liters, moles, kelvin):
-    R = 0.0821
+    R = 0.08205746
     P, V, n, T = [-1 if a == None else a for a in [atm, liters, moles, kelvin]]
     left, right = P * V, n * R * T
     if left < 0:
@@ -255,7 +255,7 @@ def ideal_gas(atm, liters, moles, kelvin):
         return left / (right * -1)
 
 def gas_density(grams_per_liter, kelvin, grams_per_mole, atm):
-    R = 0.0821
+    R = 0.08205746
     d, T, M, P = [-1 if a == None else a for a in [grams_per_liter, kelvin, grams_per_mole, atm]]
     left, right = R * d * T, M * P
     if left < 0:
