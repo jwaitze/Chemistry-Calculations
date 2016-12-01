@@ -10,8 +10,8 @@ def get_file_contents(filepath):
 def load_json_database(filepath):
     contents, json_data = get_file_contents(filepath), []
     if len(contents) < 1:
-        print('test')
-        return []
+        print('Failed to load ' + filepath)
+        sys.exit()
     contents = contents.split('\n')
     for content in contents:
         try:
@@ -51,38 +51,70 @@ def moles_to_atoms(moles):
 def atoms_to_moles(atoms):
     atoms / (6.0221 * (10**23))
 
-def break_element_object(element_object):
-    element, element_start, element_length = {'front': 1, 'element': '', 'back': 1}, 0, 0
+def break_element_object(element_object, coefficient='1'):
+    element, element_start, element_length = {'front': int(coefficient), 'element': '', 'back': 1}, 0, 0
     for c in range(len(element_object)):
         if element_object[c].isupper():
             element_start, element_length = c, 1
         elif element_object[c].islower():
             element_length += 1
-    element['element'] = element_object[element_start:element_length+1]
+    element['element'] = element_object[element_start:element_start + element_length]
     if element_start != 0:
-        element['front'] = int(element_object[:element_start])
+        element['front'] *= int(element_object[:element_start])
     if len(element_object) > len(str(element['front'])) + len(element['element']):
         element['back'] = element_object[element_start + element_length:]
     return element
 
+def break_component_section(component_section):
+    close_parenthesis = component_section.index(')')
+    section, components, coefficient = component_section[1:close_parenthesis], [], '1'
+    if component_section[close_parenthesis + 1].isdigit():
+        i, coefficient = 2, component_section[close_parenthesis + 1]
+        try:
+            while component_section[close_parenthesis + i].isdigit():
+                coefficient += component_section[close_parenthesis + i]
+                i += 1
+        except:
+            pass
+    for i in range(len(section)):
+        c = section[i]
+        upper, lower, digit, = c.isupper(), c.islower(), c.isdigit()
+        if not upper and not lower and not digit:
+            return False
+        if upper:
+            components.append([c])
+        elif lower or digit:
+            components[-1].append(c)
+    components = [coefficient + ''.join(component) for component in components]
+    return components
+
 def get_substance_components(substance):
     if ' ' in substance or '+' in substance or '-' in substance or '>' in substance or len(substance) < 1:
         return []
-    components, coefficient = [], '1'
+    components, coefficient, parenthesis_opened, check_parenthesis_coefficient = [], '1', False, False
     for i in range(len(substance)):
         c = substance[i]
-        upper, lower, digit, parenthesis = c.isupper(), c.islower(), c.isdigit(), c is '(' or c is ')'
-        if not upper and not lower and not digit and not parenthesis:
+        upper, lower, digit, open_parenthesis, close_parenthesis = c.isupper(), c.islower(), c.isdigit(), c is '(', c is ')'
+        if not upper and not lower and not digit and not open_parenthesis and not close_parenthesis:
             return False
+        if parenthesis_opened:
+            if close_parenthesis:
+                parenthesis_opened = False
+                check_parenthesis_coefficient = True
+            continue
+        if check_parenthesis_coefficient and digit:
+            continue
+        check_parenthesis_coefficient = False
         if i == 0 and digit:
             coefficient = c
         elif upper:
             components.append([c])
         elif lower or digit:
             components[-1].append(c)
-    components = [''.join(component) for component in components]
-    if coefficient != '1':
-        components = [break_element_object(coefficient + component) for component in components]
+        elif open_parenthesis:
+            parenthesis_opened = True
+            components.extend(break_component_section(substance[i:]))
+    components = [break_element_object(''.join(component), coefficient) for component in components]
     return components
 
 def get_reaction_components(formula):
@@ -167,12 +199,14 @@ def molarity(mass, substance, liters):
     return moles(mass, substance) / liters
     
 if __name__ == '__main__':
-    left_components, right_components = get_reaction_components('2Al + 3CuSO4')
+##    left_components, right_components = get_reaction_components('2Al + 3CuSO4 -> Al2(SO4)3 + 3Cu')
+
+    left_components, right_components = get_reaction_components('2Al2(Ca22SO4C3)33(SO4)2')
     if len(left_components):
         for component in left_components:
             print(component)
-    print()
     if len(right_components):
+        print()
         for component in right_components:
             print(component)
     
