@@ -201,8 +201,8 @@ def molar_mass(substance):
         grams_per_mole += periodic_table[row]['atomic_weight'] * component['back']
     return grams_per_mole
 
-def moles_substance(mass, substance):
-    return mass / molar_mass(substance)
+def moles_substance(grams, substance):
+    return grams / molar_mass(substance)
 
 def mass_substance(moles, substance):
     return moles * molar_mass(substance)
@@ -210,11 +210,11 @@ def mass_substance(moles, substance):
 def molarity(moles, liters):
     return moles / liters
 
-def molarity_from_mass(mass, substance, liters):
-    return moles_substance(mass, substance) / liters
+def molarity_from_mass(grams, substance, liters):
+    return moles_substance(grams, substance) / liters
                        
-def print_moles_substance(mass, substance):
-    print(str(mass) + ' g of ' + substance + ' = ' + str(moles_substance(mass, substance)) + ' moles')
+def print_moles_substance(grams, substance):
+    print(str(grams) + ' g of ' + substance + ' = ' + str(moles_substance(grams, substance)) + ' moles')
 
 def mmhg_to_atm(mmhg):
     return mmhg / 760
@@ -233,6 +233,9 @@ def inh2o_to_atm(inh2o):
 
 def mm_to_in(mm):
     return mm * 0.0393701
+
+def moles_ideal_gas(liters):
+    return liters / 22.4
 
 def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2):
     R = 0.0821
