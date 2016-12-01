@@ -227,12 +227,23 @@ def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2,
         return (numerator_left / (numerator_right / denominator_right)) / (denominator_left * -1)
     elif denominator_right < 0:
         return (numerator_right / (numerator_left / denominator_left)) / (denominator_right * -1)
+
+def ideal_gas(atm, liters, moles, kelvin):
+    R = 0.0821
+    P, V, n, T = [-1 if a == None else a for a in [atm, liters, moles, kelvin]]
+    left, right = P * V, n * R * T
+    if left < 0:
+        return right / (left * -1)
+    elif right < 0:
+        return left / (right * -1)
     
 if __name__ == '__main__':
 ##    2 Moles of a gas at a pressure of 2.00 atm occupies a volume of 22.4 L.
 ##    The temperature is 293 K. What will the pressure be if the volume is held
 ##    constant and the temperature is raised to 348K?
     print(ideal_gas_initial_final_state(2, 22.4, 2, 293, None, 22.4, 2, 348))
+
+    print(ideal_gas(2.5, 50, None, celcius_to_kelvin(27)))
     sys.exit()
     
     #print_moles(5, 'Al2(SO4)3')
