@@ -62,7 +62,7 @@ def break_element_object(element_object, coefficient='1'):
     if element_start != 0:
         element['front'] *= int(element_object[:element_start])
     if len(element_object) >= len(str(element['front'])) + len(element['element']):
-        element['back'] = element_object[element_start + element_length:]
+        element['back'] = int(element_object[element_start + element_length:])
     return element
 
 def break_component_section(component_section):
@@ -95,7 +95,6 @@ def break_component_section(component_section):
                 break
         if not appended:
             components.append(component + coefficient)
-    print(components)
     return components
 
 def get_substance_components(substance):
@@ -196,21 +195,26 @@ def get_periodic_table_details_list():
     return [key for key in periodic_table[0]]
 
 def molar_mass(substance):
-    components, molar_mass = get_substance_components(substance), 0
-    print(components, molar_mass)
+    components, grams_per_mole = get_substance_components(substance), 0
     for component in components:
         row = locate_periodic_table_row(component['element'])
-        molar_mass += periodic_table[row]['atomic_weight']
-    return molar_mass
+        grams_per_mole += periodic_table[row]['atomic_weight'] * component['back']
+    return [components[0]['front'], grams_per_mole]
 
 def moles(mass, substance):
-    return mass / molar_mass(substance)
+    coefficient, grams_per_mole = molar_mass(substance)
+    return mass / grams_per_mole
 
 def molarity(mass, substance, liters):
     return moles(mass, substance) / liters
+
+def print_moles(mass, substance):
+    print(str(mass) + ' g of ' + substance + ' = ' + str(moles(mass, substance)) + ' moles')
     
 if __name__ == '__main__':
-    print(molar_mass('Cl2(SO4)3'))
+    sys.exit()
+    
+    #print_moles(5, 'Al2(SO4)3')
     
 ##    left_components, right_components = get_reaction_components('2Al + 3CuSO4 -> Al2(SO4)3 + 3Cu')
 
