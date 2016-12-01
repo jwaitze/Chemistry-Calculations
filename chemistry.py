@@ -214,6 +214,24 @@ def molarity_from_mass(mass, substance, liters):
 def print_moles(mass, substance):
     print(str(mass) + ' g of ' + substance + ' = ' + str(moles(mass, substance)) + ' moles')
 
+def mmhg_to_atm(mmhg):
+    return mmhg / 760
+
+def torr_to_atm(torr):
+    return mmhg_to_atm(torr)
+
+def psi_to_atm(psi):
+    return psi / 14.6959
+
+def kpa_to_atm(kpa):
+    return kpa / 101.325
+
+def inh2o_to_atm(inh2o):
+    return inh2o / 407.189
+
+def mm_to_in(mm):
+    return mm * 0.0393701
+
 def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2):
     R = 0.0821
     P1, V1, n1, T1, P2, V2, n2, T2 = [-1 if a == None else a for a in [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2]]
@@ -236,6 +254,15 @@ def ideal_gas(atm, liters, moles, kelvin):
         return right / (left * -1)
     elif right < 0:
         return left / (right * -1)
+
+def gas_density(moles_per_liter, kelvin, grams_per_mole, atm):
+    R = 0.0821
+    d, T, M, P = [-1 if a == None else a for a in [moles_per_liter, kelvin, grams_per_mole, atm]]
+    left, right = R * d * T, M * P
+    if left < 0:
+        return right / (left * -1)
+    elif right < 0:
+        return left / (right * -1)
     
 if __name__ == '__main__':
 ##    2 Moles of a gas at a pressure of 2.00 atm occupies a volume of 22.4 L.
@@ -243,7 +270,12 @@ if __name__ == '__main__':
 ##    constant and the temperature is raised to 348K?
     print(ideal_gas_initial_final_state(2, 22.4, 2, 293, None, 22.4, 2, 348))
 
+##    How many moles of Cl2 are in a container (usually called a vessel) if the
+##    pressure is 2.5 atm, the temperature is 27 C, and the volume is 50 L? R is,
+##    of course, 0.0821 L atm mole-1 K- 1.
     print(ideal_gas(2.5, 50, None, celcius_to_kelvin(27)))
+
+    print(gas_density(1.853, celcius_to_kelvin(23.8), None, mmhg_to_atm(745.5)))
     sys.exit()
     
     #print_moles(5, 'Al2(SO4)3')
