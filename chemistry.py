@@ -205,13 +205,34 @@ def moles(mass, substance):
     coefficient, grams_per_mole = molar_mass(substance)
     return mass / grams_per_mole
 
-def molarity(mass, substance, liters):
-    return moles(mass, substance) / liters
+def molarity(moles, liters):
+    return moles / liters
 
+def molarity_from_mass(mass, substance, liters):
+    return moles(mass, substance) / liters
+                       
 def print_moles(mass, substance):
     print(str(mass) + ' g of ' + substance + ' = ' + str(moles(mass, substance)) + ' moles')
+
+def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2):
+    R = 0.0821
+    P1, V1, n1, T1, P2, V2, n2, T2 = [-1 if a == None else a for a in [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2]]
+    numerator_left, denominator_left = P1 * V1, P2 * V2
+    numerator_right, denominator_right = n1 * R * T1, n2 * R * T2
+    if numerator_left < 0:
+        return ((numerator_right / denominator_right) * denominator_left) / (numerator_left * -1)
+    elif numerator_right < 0:
+        return ((numerator_left / denominator_left) * denominator_right) / (numerator_right * -1)
+    elif denominator_left < 0:
+        return (numerator_left / (numerator_right / denominator_right)) / (denominator_left * -1)
+    elif denominator_right < 0:
+        return (numerator_right / (numerator_left / denominator_left)) / (denominator_right * -1)
     
 if __name__ == '__main__':
+##    2 Moles of a gas at a pressure of 2.00 atm occupies a volume of 22.4 L.
+##    The temperature is 293 K. What will the pressure be if the volume is held
+##    constant and the temperature is raised to 348K?
+    print(ideal_gas_initial_final_state(2, 22.4, 2, 293, None, 22.4, 2, 348))
     sys.exit()
     
     #print_moles(5, 'Al2(SO4)3')
