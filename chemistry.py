@@ -199,11 +199,10 @@ def molar_mass(substance):
     for component in components:
         row = locate_periodic_table_row(component['element'])
         grams_per_mole += periodic_table[row]['atomic_weight'] * component['back']
-    return [components[0]['front'], grams_per_mole]
+    return grams_per_mole
 
 def moles(mass, substance):
-    coefficient, grams_per_mole = molar_mass(substance)
-    return mass / grams_per_mole
+    return mass / molar_mass(substance)
 
 def molarity(moles, liters):
     return moles / liters
@@ -255,9 +254,9 @@ def ideal_gas(atm, liters, moles, kelvin):
     elif right < 0:
         return left / (right * -1)
 
-def gas_density(moles_per_liter, kelvin, grams_per_mole, atm):
+def gas_density(grams_per_liter, kelvin, grams_per_mole, atm):
     R = 0.0821
-    d, T, M, P = [-1 if a == None else a for a in [moles_per_liter, kelvin, grams_per_mole, atm]]
+    d, T, M, P = [-1 if a == None else a for a in [grams_per_liter, kelvin, grams_per_mole, atm]]
     left, right = R * d * T, M * P
     if left < 0:
         return right / (left * -1)
@@ -275,7 +274,12 @@ if __name__ == '__main__':
 ##    of course, 0.0821 L atm mole-1 K- 1.
     print(ideal_gas(2.5, 50, None, celcius_to_kelvin(27)))
 
+##    The density of a gas is measured at 1.853 g / L at 745.5 mmHg and 23.8 °C. What is its molar mass?
     print(gas_density(1.853, celcius_to_kelvin(23.8), None, mmhg_to_atm(745.5)))
+
+##    Anhydrous aluminum chloride sublimes at high temperatures.
+##    What density will the vapor have at 225 degrees Celsius and 0.939 atm of pressure?
+    print(gas_density(None, celcius_to_kelvin(225), molar_mass('AlCl3'), 0.939))
     sys.exit()
     
     #print_moles(5, 'Al2(SO4)3')
