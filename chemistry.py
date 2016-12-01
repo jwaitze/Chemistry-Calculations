@@ -201,17 +201,20 @@ def molar_mass(substance):
         grams_per_mole += periodic_table[row]['atomic_weight'] * component['back']
     return grams_per_mole
 
-def moles(mass, substance):
+def moles_substance(mass, substance):
     return mass / molar_mass(substance)
+
+def mass_substance(moles, substance):
+    return moles * molar_mass(substance)
 
 def molarity(moles, liters):
     return moles / liters
 
 def molarity_from_mass(mass, substance, liters):
-    return moles(mass, substance) / liters
+    return moles_substance(mass, substance) / liters
                        
-def print_moles(mass, substance):
-    print(str(mass) + ' g of ' + substance + ' = ' + str(moles(mass, substance)) + ' moles')
+def print_moles_substance(mass, substance):
+    print(str(mass) + ' g of ' + substance + ' = ' + str(moles_substance(mass, substance)) + ' moles')
 
 def mmhg_to_atm(mmhg):
     return mmhg / 760
@@ -282,7 +285,7 @@ if __name__ == '__main__':
     print(gas_density(None, celcius_to_kelvin(225), molar_mass('AlCl3'), 0.939))
     sys.exit()
     
-    #print_moles(5, 'Al2(SO4)3')
+    #print_moles_substance(5, 'Al2(SO4)3')
     
 ##    left_components, right_components = get_reaction_components('2Al + 3CuSO4 -> Al2(SO4)3 + 3Cu')
 
