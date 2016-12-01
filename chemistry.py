@@ -61,7 +61,7 @@ def break_element_object(element_object, coefficient='1'):
     element['element'] = element_object[element_start:element_start + element_length]
     if element_start != 0:
         element['front'] *= int(element_object[:element_start])
-    if len(element_object) > len(str(element['front'])) + len(element['element']):
+    if len(element_object) >= len(str(element['front'])) + len(element['element']):
         element['back'] = element_object[element_start + element_length:]
     return element
 
@@ -85,7 +85,17 @@ def break_component_section(component_section):
             components.append([c])
         elif lower or digit:
             components[-1].append(c)
-    components = [coefficient + ''.join(component) for component in components]
+    components_, components = [''.join(component) for component in components], []
+    for component in components_:
+        appended = False
+        for c in range(len(component)):
+            if component[c].isdigit():
+                components.append(component[:c] + str(int(coefficient) * int(component[c:])))
+                appended = True
+                break
+        if not appended:
+            components.append(component + coefficient)
+    print(components)
     return components
 
 def get_substance_components(substance):
@@ -187,8 +197,9 @@ def get_periodic_table_details_list():
 
 def molar_mass(substance):
     components, molar_mass = get_substance_components(substance), 0
+    print(components, molar_mass)
     for component in components:
-        row = locate_periodic_table_row(component)
+        row = locate_periodic_table_row(component['element'])
         molar_mass += periodic_table[row]['atomic_weight']
     return molar_mass
 
@@ -199,16 +210,18 @@ def molarity(mass, substance, liters):
     return moles(mass, substance) / liters
     
 if __name__ == '__main__':
+    print(molar_mass('Cl2(SO4)3'))
+    
 ##    left_components, right_components = get_reaction_components('2Al + 3CuSO4 -> Al2(SO4)3 + 3Cu')
 
-    left_components, right_components = get_reaction_components('2Al2(Ca22SO4C3)33(SO4)2')
-    if len(left_components):
-        for component in left_components:
-            print(component)
-    if len(right_components):
-        print()
-        for component in right_components:
-            print(component)
+##    left_components, right_components = get_reaction_components('2Al2(Ca22SO4C3)33(SO4)2')
+##    if len(left_components):
+##        for component in left_components:
+##            print(component)
+##    if len(right_components):
+##        print()
+##        for component in right_components:
+##            print(component)
     
 ##    print()
 ##    for element in [[element['name'], element['electron_configuration'], element['boiling_point']] for element in periodic_table]:
