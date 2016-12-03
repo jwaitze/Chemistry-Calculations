@@ -289,8 +289,6 @@ def balance_chemical_equation(reaction_components):
             for side in equations[-1]:
                 equations[-1][side] = sympify(equations[-1][side][:-1])
     for e in equations:
-##        if str(e['reactants']).isdigit() or str(e['products']).isdigit():
-##            continue
         if '+' not in str(e['reactants']) and '+' not in str(e['products']):
             symbol = symbols(str(e['reactants'])[-1])
             for f in equations:
@@ -298,9 +296,18 @@ def balance_chemical_equation(reaction_components):
                     if str(symbol) in str(f[side]):
                         f[side] = f[side].subs(symbol, 1)
             break
+    coefficients = {}
     for e in equations:
         for j in range(i):
-            print(chr(ord('a')+j), '=', solveset(Eq(e['reactants'], e['products']), symbols(chr(ord('a')+j))))
+            v = chr(ord('a')+j)
+            coefficients[v] = 'n/a'
+            answer = solveset(Eq(e['reactants'], e['products']), symbols(v))
+            for s in answer:
+                if not str(s).isdigit():
+                    continue
+                coefficients[v] = int(s)
+                print(v, '=', s)
+                break
         print()
     for e in equations:
         print(e)
