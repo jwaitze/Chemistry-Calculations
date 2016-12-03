@@ -271,7 +271,7 @@ def gas_density(grams_per_liter, kelvin, grams_per_mole, atm):
         return left / (right * -1)
 
 def balance_chemical_equation(reaction_components):
-    equation_components, equations, i = {'reactants': [], 'products': []}, [], 0
+    equation_components, equations, i, coefficients = {'reactants': [], 'products': []}, [], 0, {}
     for side in reaction_components:
         for component in reaction_components[side]:
             equation_components[side].append({'variable': chr(ord('a')+i), 'component': component})
@@ -295,31 +295,49 @@ def balance_chemical_equation(reaction_components):
                 for side in f:
                     if str(symbol) in str(f[side]):
                         f[side] = f[side].subs(symbol, 1)
+                        coefficients[str(symbol)] = 1
             break
-    coefficients = {}
-    for e in equations:
-        for j in range(i):
-            v = chr(ord('a')+j)
-            coefficients[v] = 'n/a'
-            answer = solveset(Eq(e['reactants'], e['products']), symbols(v))
-            for s in answer:
-                if not str(s).isdigit():
-                    continue
-                coefficients[v] = int(s)
-                print(v, '=', s)
-                break
-        print()
-    for e in equations:
-        print(e)
-    return reaction_components
+    while len(coefficients) != i:
+        for e in equations:
+            if Eq(e['reactants'], e['products']) == True:
+                continue
+            for j in range(i):
+                v = chr(ord('a')+j)
+                answer = solveset(Eq(e['reactants'], e['products']), symbols(v))
+                for s in answer:
+                    if not str(s).isdigit():
+                        continue
+                    if v not in coefficients:
+                        coefficients[v] = int(s)
+                    break
+        for coefficient in coefficients:
+            for e in equations:
+                for side in e:
+                    e[side] = e[side].subs(symbols(coefficient), coefficients[coefficient])
+    result, i = {}, 0
+    for side in reaction_components:
+        result[side] = []
+        for component in reaction_components[side]:
+            result[side].append([])
+            symbol = chr(ord('a')+i)
+            for element in component:
+                result[side][-1].append(element.copy())
+                result[side][-1][-1]['moles'] = coefficients[symbol]
+            i += 1
+    return result
     
 if __name__ == '__main__':
     reaction_components = get_reaction_components('CH4 + O2 --> CO2 + H2O')
     balanced_components = balance_chemical_equation(reaction_components)
-##    for component in balanced_components:
-##        for element in component:
-##            print(element)
-##        print()
+    for side in reaction_components:
+        for component in reaction_components[side]:
+            print(component)
+        print()
+    print('\n')
+    for side in balanced_components:
+        for component in balanced_components[side]:
+            print(component)
+        print()
     sys.exit()
 
 ##    2 Moles of a gas at a pressure of 2.00 atm occupies a volume of 22.4 L.
