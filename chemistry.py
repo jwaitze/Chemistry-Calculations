@@ -1,4 +1,5 @@
 import sys, ast
+from sympy import *
 
 def get_file_contents(filepath):
     try:
@@ -52,7 +53,7 @@ def atoms_to_moles(atoms):
     atoms / (6.0221 * (10**23))
 
 def break_element_object(element_object, coefficient='1'):
-    element, element_start, element_length = {'front': int(coefficient), 'element': '', 'back': 1}, 0, 0
+    element, element_start, element_length = {'moles': int(coefficient), 'element': '', 'subscript': 1}, 0, 0
     for c in range(len(element_object)):
         if element_object[c].isupper():
             element_start, element_length = c, 1
@@ -60,9 +61,9 @@ def break_element_object(element_object, coefficient='1'):
             element_length += 1
     element['element'] = element_object[element_start:element_start + element_length]
     if element_start != 0:
-        element['front'] *= int(element_object[:element_start])
-    if len(element_object) >= len(str(element['front'])) + len(element['element']):
-        element['back'] = int(element_object[element_start + element_length:])
+        element['moles'] *= int(element_object[:element_start])
+    if len(element_object) >= len(str(element['moles'])) + len(element['element']):
+        element['subscript'] = int(element_object[element_start + element_length:])
     return element
 
 def break_component_section(component_section):
@@ -144,11 +145,11 @@ def get_reaction_components(formula):
         left_components = left.split('+')
     if len(right) > 0:
         right_components = right.split('+')
-    result = [[], []]
+    result = {'reactants': [], 'products': []}
     for c in range(len(left_components)):
-        result[0].append(get_substance_components(left_components[c]))
+        result['reactants'].append(get_substance_components(left_components[c]))
     for c in range(len(right_components)):
-        result[1].append(get_substance_components(right_components[c]))
+        result['products'].append(get_substance_components(right_components[c]))
     return result
 
 def max_reactivity(metal_one, metal_two):
@@ -198,7 +199,7 @@ def molar_mass(substance):
     components, grams_per_mole = get_substance_components(substance), 0
     for component in components:
         row = locate_periodic_table_row(component['element'])
-        grams_per_mole += periodic_table[row]['atomic_weight'] * component['back']
+        grams_per_mole += periodic_table[row]['atomic_weight'] * component['subscript']
     return grams_per_mole
 
 def moles_substance(grams, substance):
@@ -238,7 +239,7 @@ def moles_ideal_gas(liters):
     return liters / 22.4
 
 def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2):
-    R = 0.0821
+    R = 0.08205746
     P1, V1, n1, T1, P2, V2 ,n2, T2 = [-1 if a == None else a for a in [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2]]
     numerator_left, denominator_left = P1 * V1, P2 * V2
     numerator_right, denominator_right = n1 * R * T1, n2 * R * T2
@@ -268,8 +269,29 @@ def gas_density(grams_per_liter, kelvin, grams_per_mole, atm):
         return right / (left * -1)
     elif right < 0:
         return left / (right * -1)
+
+def balance_chemical_equation(reaction_components):
+    equation_components, equations, i = {'reactants': [], 'products': []}, [], 0
+    for side in reaction_components:
+        for component in reaction_components[side]:
+            equation_components[side].append({'variable': chr(ord('a')+i), 'component': component})
+            i += 1
+    for component in equation_components['reactants']:
+        for element in component['component']:
+            equations.append(['', ''])
+            print(element)
+##            for 
+    return reaction_components
     
 if __name__ == '__main__':
+    reaction_components = get_reaction_components('CH4 + O2 --> CO2 + H2O')
+    balanced_components = balance_chemical_equation(reaction_components)
+##    for component in balanced_components:
+##        for element in component:
+##            print(element)
+##        print()
+    sys.exit()
+
 ##    2 Moles of a gas at a pressure of 2.00 atm occupies a volume of 22.4 L.
 ##    The temperature is 293 K. What will the pressure be if the volume is held
 ##    constant and the temperature is raised to 348K?
