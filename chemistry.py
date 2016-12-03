@@ -278,9 +278,22 @@ def balance_chemical_equation(reaction_components):
             i += 1
     for component in equation_components['reactants']:
         for element in component['component']:
-            equations.append(['', ''])
-            print(element)
-##            for 
+            equations.append({'reactants': str(element['subscript']) + '*' + component['variable'] + '+', 'products': ''})
+            for side in equation_components:
+                for c in equation_components[side]:
+                    if c['variable'] == component['variable']: # i will likely have to change this
+                        continue
+                    for e in c['component']:
+                        if e['element'] == element['element']:
+                            equations[-1][side] += str(e['subscript']) + '*' + c['variable'] + '+'
+            for side in equations[-1]:
+                equations[-1][side] = sympify(equations[-1][side][:-1])
+    for e in equations:
+        if '+' not in str(e['reactants']) and '+' not in str(e['products']):
+            e['reactants'] = e['reactants'].subs(symbols(str(e['reactants'])[-1]), 1)
+            break
+    for e in equations:
+        print(e)
     return reaction_components
     
 if __name__ == '__main__':
