@@ -215,10 +215,14 @@ def molarity_from_mass(grams, substance, liters):
     return moles_substance(grams, substance) / liters
                        
 def print_moles_substance(grams, substance):
-    print(str(grams) + ' grams of ' + substance + ' = ' + str(moles_substance(grams, substance)) + ' moles')
+    moles = moles_substance(grams, substance)
+    print(str(grams) + ' grams of ' + substance + ' = ' + str(moles) + ' moles')
+    return moles
 
 def print_mass_substance(moles, substance):
-    print(str(moles) + ' moles of ' + substance + ' = ' + str(mass_substance(moles, substance)) + ' grams')
+    grams = mass_substance(moles, substance)
+    print(str(moles) + ' moles of ' + substance + ' = ' + str(grams) + ' grams')
+    return grams
 
 def mmhg_to_atm(mmhg):
     return mmhg / 760
@@ -244,8 +248,13 @@ def moles_ideal_gas(liters):
 def moles_to_liters_gas(moles):
     return 22.4 * moles
 
-def mass_percentage(partial_substance, whole_substance):
-    return molar_mass(partial_substance) / molar_mass(whole_substance)
+def get_mass_percentages(substance):
+    components, result = get_substance_components(substance), []
+    for component in components:
+        partial_substance = component['element'] + str(component['subscript'])
+        percentage = molar_mass(partial_substance) / molar_mass(substance)
+        result.append({'substance': partial_substance, 'percentage': percentage})
+    return result
 
 def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2):
     R = 0.08205746
@@ -374,6 +383,7 @@ def print_balance_chemical_formula(formula):
     balanced_components = balance_chemical_formula(reaction_components)
     balanced_formula = reaction_components_to_string(balanced_components)
     print(balanced_formula)
+    return balanced_components
 
 def stoichiometry(formula, reference_component, moles_limiting_reagent, target_component):
     reaction_components = get_reaction_components(formula)
@@ -407,18 +417,20 @@ def print_stoichiometry(formula, reference_component, moles_reference_component,
     return result
 
 def print_ideal_gas(atm1, liters1, moles1, kelvin1, atm2=None, liters2=None, moles2=None, kelvin2=None):
-    inputs = [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2]
+    inputs, result = [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2], 0
     if set([None]) == set(inputs[4:]):
-        print(ideal_gas(inputs[0], inputs[1], inputs[2], inputs[3]))
+        result = ideal_gas(inputs[0], inputs[1], inputs[2], inputs[3])
     else:
-        print(ideal_gas_initial_final_state(inputs[0], inputs[1], inputs[2], inputs[3],
-                                            inputs[4], inputs[5], inputs[6], inputs7))
+        result = ideal_gas_initial_final_state(inputs[0], inputs[1], inputs[2], inputs[3],
+                                            inputs[4], inputs[5], inputs[6], inputs7)
+    print(result)
+    return result
 
 def print_mass_percentages(substance):
-    components = get_substance_components(substance)
-    for component in components:
-        partial_substance = component['element'] + str(component['subscript'])
-        print(partial_substance, '=', mass_percentage(partial_substance, substance))
+    mass_percentages = get_mass_percentages(substance)
+    for percentage in mass_percentages:
+        print(percentage['substance'], '=', percentage['percentage'])
+    return mass_percentages
 
 def gibbs_free_energy():
     return
