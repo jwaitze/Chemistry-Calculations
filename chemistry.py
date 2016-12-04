@@ -239,6 +239,9 @@ def mm_to_in(mm):
 def moles_ideal_gas(liters):
     return liters / 22.4
 
+def moles_to_liters_gas(moles):
+    return 22.4 * moles
+
 def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2):
     R = 0.08205746
     P1, V1, n1, T1, P2, V2 ,n2, T2 = [-1 if a == None else a for a in [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2]]
@@ -366,8 +369,60 @@ def print_balance_chemical_formula(formula):
     balanced_components = balance_chemical_formula(reaction_components)
     balanced_formula = reaction_components_to_string(balanced_components)
     print(balanced_formula)
+
+def stoichiometry(formula, reference_component, moles_limiting_reagent, target_component):
+    reaction_components = get_reaction_components(formula)
+    balanced_components = balance_chemical_formula(reaction_components)
+    balanced_formula = reaction_components_to_string(balanced_components)
+    ratio = {}
+    for side in balanced_components:
+        for component in balanced_components[side]:
+            substance = ''
+            for element in component:
+                substance += element['element']
+                if element['subscript'] > 1:
+                    substance += str(element['subscript'])
+            if substance == reference_component:
+                ratio['reference_component'] = component[0]['moles']
+            elif substance == target_component:
+                ratio['target_component'] = component[0]['moles']
+    for c in ratio:
+        if type(ratio[c]) is str:
+            ratio[c] = eval(ratio[c])
+    moles_target_component = (moles_limiting_reagent / ratio['reference_component']) * ratio['target_component']
+    mass_target_component = moles_target_component * molar_mass(target_component)
+    return {'balanced_formula': balanced_formula, 'moles': moles_target_component, 'grams': mass_target_component}
+
+def print_stoichiometry(formula, reference_component, moles_reference_component, target_component):
+    result = stoichiometry(formula, reference_component, moles_reference_component, target_component)
+    print(result['balanced_formula'])
+    print(reference_component, '->', moles_reference_component, 'moles or',
+          mass_substance(moles_reference_component, reference_component), 'grams')
+    print(target_component, '->', result['moles'], 'moles or', result['grams'], 'grams')
+    return result
     
 if __name__ == '__main__':
+
+    sys.exit()
+
+    result = print_stoichiometry('KClO3 --> KCl + O2', 'KClO3', moles_substance(39.498-38.388, 'KClO3'), 'O2')
+    print('or', ideal_gas(1, None, result['moles'], farenheit_to_kelvin(70.7)), 'liters of O2 gas at 70.7 deg.F')
+
+    sys.exit()
+
+    print_stoichiometry('KI + Pb(NO3)2 --> PbI2 + KNO3', 'KI', moles_substance(1.187, 'KI'), 'PbI2')
+
+    sys.exit()
+
+    print_stoichiometry('CuSO4 + Al --> Al2(SO4)3 + Cu', 'CuSO4', moles_substance(5, 'CuSO4(H2O)5'), 'Al')
+
+    sys.exit()
+
+    result = print_stoichiometry('C2H6 + O2 --> CO2 + H2O', 'C2H6', moles_substance(20, 'C2H6'), 'O2')
+    print('or', moles_to_liters_gas(result['moles']), 'liters of O2 gas at STP')
+
+    sys.exit()
+    
     print_balance_chemical_formula('C2H6 + O2 --> CO2 + H2O')
     print_balance_chemical_formula('C4H10 + O2 --> CO2 + H2O')
     print_balance_chemical_formula('S8 + O3 --> SO2')
@@ -389,7 +444,7 @@ if __name__ == '__main__':
     
     sys.exit()
     
-    formula = 'Cu + HNO3 --> Cu(NO3)2 + NO + H2O'
+    formula = 'Cu + HNO3 --> Cu(NO3)2 + NO + H2O' # need to make these two work
     formula = 'S + HNO3 --> H2SO4 + NO2 + H2O'
     print(formula)
     reaction_components = get_reaction_components(formula)
