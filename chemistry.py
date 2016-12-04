@@ -271,7 +271,7 @@ def gas_density(grams_per_liter, kelvin, grams_per_mole, atm):
     elif right < 0:
         return left / (right * -1)
 
-def balance_chemical_equation(reaction_components):
+def balance_chemical_formula(reaction_components):
     equation_components, equations, i, coefficients = {'reactants': [], 'products': []}, [], 0, {}
     for side in reaction_components:
         for component in reaction_components[side]:
@@ -289,15 +289,18 @@ def balance_chemical_equation(reaction_components):
                             equations[-1][side] += str(e['subscript']) + '*' + c['variable'] + '+'
             for side in equations[-1]:
                 equations[-1][side] = sympify(equations[-1][side][:-1])
+    equations_str, best_variable = ''.join([str(e['reactants']) + str(e['products']) for e in equations]), '-'
     for e in equations:
         if '+' not in str(e['reactants']) and '+' not in str(e['products']):
-            symbol = symbols(str(e['reactants'])[-1])
-            for f in equations:
-                for side in f:
-                    if str(symbol) in str(f[side]):
-                        f[side] = f[side].subs(symbol, 1)
-                        coefficients[str(symbol)] = 1
-            break
+            for side in e:
+                if equations_str.count(str(e[side])[-1]) >= equations_str.count(best_variable):
+                    best_variable = str(e[side])[-1]
+    symbol = symbols(best_variable)
+    for e in equations:
+        for side in e:
+            if str(symbol) in str(e[side]):
+                e[side] = e[side].subs(symbol, 1)
+                coefficients[str(symbol)] = 1
     while len(coefficients) != i:
         for e in equations:
             if Eq(e['reactants'], e['products']) == True:
@@ -357,30 +360,40 @@ def reaction_components_to_string(reaction_components):
         formula += ' + '
     formula = formula[:-3]
     return formula
+
+def print_balance_chemical_formula(formula):
+    reaction_components = get_reaction_components(formula)
+    balanced_components = balance_chemical_formula(reaction_components)
+    balanced_formula = reaction_components_to_string(balanced_components)
+    print(balanced_formula)
     
 if __name__ == '__main__':
-##    formula = 'C4H10 + O2 --> CO2 + H2O'
-##    formula = 'S8 + O3 --> SO2'
-##    formula = 'KFe3AlSi3O10(OH)2 + Cu + O2 + H2S --> KAlSi3O8 + CuFeS2 + H2O'
-##    formula = 'Na + H2O --> NaOH + H2'
-##    formula = 'Ca(OH)2 + H3PO4 --> Ca3(PO4)2 + H2O'
-##    formula = 'KClO3 --> KCl + O2'
-##    formula = 'Fe + O2 --> Fe2O3'
-##    formula = 'C2H6 + O2 --> CO2 + H2O'
-##    formula = 'Zn + HCl --> ZnCl2 + H2'
-##    formula = 'H2 + Cl2 --> HCl'
-##    formula = 'Al2(CO3)3 + H3PO4 --> AlPO4 + CO2 + H2O'
-##    formula = 'CH4 + O2 --> CO2 + H2O'
-##    formula = 'C5H12 + O2 --> CO2 + H2O'
-##    formula = 'FeCl3 + NH4OH --> Fe(OH)3 + NH4Cl'
-##    formula = 'S8 + F2 --> SF6'
-##    formula = 'P4 + O2 --> P2O5'
-##    formula = 'H2 + O3 --> H2O'
-##    formula = 'H2 + O2 --> H2O'
-    formula = 'CuSO4 + Al --> Al2(SO4)3 + Cu'
+    print_balance_chemical_formula('C2H6 + O2 --> CO2 + H2O')
+    print_balance_chemical_formula('C4H10 + O2 --> CO2 + H2O')
+    print_balance_chemical_formula('S8 + O3 --> SO2')
+    print_balance_chemical_formula('KFe3AlSi3O10(OH)2 + Cu + O2 + H2S --> KAlSi3O8 + CuFeS2 + H2O')
+    print_balance_chemical_formula('Ca(OH)2 + H3PO4 --> Ca3(PO4)2 + H2O')
+    print_balance_chemical_formula('KClO3 --> KCl + O2')
+    print_balance_chemical_formula('Fe + O2 --> Fe2O3')
+    print_balance_chemical_formula('C2H6 + O2 --> CO2 + H2O')
+    print_balance_chemical_formula('Zn + HCl --> ZnCl2 + H2')
+    print_balance_chemical_formula('H2 + Cl2 --> HCl')
+    print_balance_chemical_formula('Al2(CO3)3 + H3PO4 --> AlPO4 + CO2 + H2O')
+    print_balance_chemical_formula('C5H12 + O2 --> CO2 + H2O')
+    print_balance_chemical_formula('CuSO4 + Al --> Al2(SO4)3 + Cu')
+    print_balance_chemical_formula('H2 + O2 --> H2O')
+    print_balance_chemical_formula('H2 + O3 --> H2O')
+    print_balance_chemical_formula('S8 + F2 --> SF6')
+    print_balance_chemical_formula('P4 + O2 --> P2O5')
+    print_balance_chemical_formula('FeCl3 + NH4OH --> Fe(OH)3 + NH4Cl')
+    
+    sys.exit()
+    
+    formula = 'Cu + HNO3 --> Cu(NO3)2 + NO + H2O'
+    formula = 'S + HNO3 --> H2SO4 + NO2 + H2O'
     print(formula)
     reaction_components = get_reaction_components(formula)
-    balanced_components = balance_chemical_equation(reaction_components)
+    balanced_components = balance_chemical_formula(reaction_components)
 ##    for side in reaction_components:
 ##        for component in reaction_components[side]:
 ##            print(component)
@@ -413,18 +426,7 @@ if __name__ == '__main__':
     print(gas_density(None, celcius_to_kelvin(225), molar_mass('AlCl3'), 0.939))
     sys.exit()
     
-    #print_moles_substance(5, 'Al2(SO4)3')
-    
-##    left_components, right_components = get_reaction_components('2Al + 3CuSO4 -> Al2(SO4)3 + 3Cu')
-
-##    left_components, right_components = get_reaction_components('2Al2(Ca22SO4C3)33(SO4)2')
-##    if len(left_components):
-##        for component in left_components:
-##            print(component)
-##    if len(right_components):
-##        print()
-##        for component in right_components:
-##            print(component)
+    print_moles_substance(5, 'Al2(SO4)3')
     
 ##    print()
 ##    for element in [[element['name'], element['electron_configuration'], element['boiling_point']] for element in periodic_table]:
