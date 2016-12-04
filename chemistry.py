@@ -403,10 +403,15 @@ def print_stoichiometry(formula, reference_component, moles_reference_component,
     
 if __name__ == '__main__':
 
+## 1. The human body needs at least 1.03 x 10-2 mol O2 every minute. If all of this oxygen
+## is used for the cellular respiration reaction that breaks down glucose, how many grams of
+## glucose does the human body consume each minute?
+    print_stoichiometry('C6H12O6 + O2 --> CO2 + H2O', 'O2', 1.03*(10**-2), 'C6H12O6')
+
     sys.exit()
 
     result = print_stoichiometry('KClO3 --> KCl + O2', 'KClO3', moles_substance(39.498-38.388, 'KClO3'), 'O2')
-    print('or', ideal_gas(1, None, result['moles'], farenheit_to_kelvin(70.7)), 'liters of O2 gas at 70.7 deg.F')
+    print('or', ideal_gas(1, None, result['moles'], farenheit_to_kelvin(70.7)), 'liters of O2 gas at 70.7 °F')
 
     sys.exit()
 
