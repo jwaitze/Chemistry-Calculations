@@ -215,7 +215,10 @@ def molarity_from_mass(grams, substance, liters):
     return moles_substance(grams, substance) / liters
                        
 def print_moles_substance(grams, substance):
-    print(str(grams) + ' g of ' + substance + ' = ' + str(moles_substance(grams, substance)) + ' moles')
+    print(str(grams) + ' grams of ' + substance + ' = ' + str(moles_substance(grams, substance)) + ' moles')
+
+def print_mass_substance(moles, substance):
+    print(str(moles) + ' moles of ' + substance + ' = ' + str(mass_substance(moles, substance)) + ' grams')
 
 def mmhg_to_atm(mmhg):
     return mmhg / 760
@@ -399,6 +402,14 @@ def print_stoichiometry(formula, reference_component, moles_reference_component,
           mass_substance(moles_reference_component, reference_component), 'grams')
     print(target_component, '->', result['moles'], 'moles or', result['grams'], 'grams')
     return result
+
+def print_ideal_gas(atm1, liters1, moles1, kelvin1, atm2=None, liters2=None, moles2=None, kelvin2=None):
+    inputs = [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2]
+    if set([None]) == set(inputs[4:]):
+        print(ideal_gas(inputs[0], inputs[1], inputs[2], inputs[3]))
+    else:
+        print(ideal_gas_initial_final_state(inputs[0], inputs[1], inputs[2], inputs[3],
+                                            inputs[4], inputs[5], inputs[6], inputs7]))
 
 def gibbs_free_energy():
     return
