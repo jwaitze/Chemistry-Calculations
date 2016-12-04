@@ -1,6 +1,5 @@
 import sys, ast
 from sympy import *
-from time import sleep
 
 def get_file_contents(filepath):
     try:
@@ -400,8 +399,13 @@ def print_stoichiometry(formula, reference_component, moles_reference_component,
           mass_substance(moles_reference_component, reference_component), 'grams')
     print(target_component, '->', result['moles'], 'moles or', result['grams'], 'grams')
     return result
+
+def gibbs_free_energy():
+    return
     
 if __name__ == '__main__':
+
+    sys.exit()
 
 ## 1. The human body needs at least 1.03 x 10-2 mol O2 every minute. If all of this oxygen
 ## is used for the cellular respiration reaction that breaks down glucose, how many grams of
