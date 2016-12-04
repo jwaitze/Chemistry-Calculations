@@ -244,6 +244,9 @@ def moles_ideal_gas(liters):
 def moles_to_liters_gas(moles):
     return 22.4 * moles
 
+def mass_percentage(partial_substance, whole_substance):
+    return molar_mass(partial_substance) / molar_mass(whole_substance)
+
 def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2):
     R = 0.08205746
     P1, V1, n1, T1, P2, V2 ,n2, T2 = [-1 if a == None else a for a in [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2]]
@@ -410,6 +413,9 @@ def print_ideal_gas(atm1, liters1, moles1, kelvin1, atm2=None, liters2=None, mol
     else:
         print(ideal_gas_initial_final_state(inputs[0], inputs[1], inputs[2], inputs[3],
                                             inputs[4], inputs[5], inputs[6], inputs7))
+
+def print_mass_percentage(partial_substance, whole_substance):
+    print(mass_percentage(partial_substance, whole_substance))
 
 def gibbs_free_energy():
     return
