@@ -414,8 +414,11 @@ def print_ideal_gas(atm1, liters1, moles1, kelvin1, atm2=None, liters2=None, mol
         print(ideal_gas_initial_final_state(inputs[0], inputs[1], inputs[2], inputs[3],
                                             inputs[4], inputs[5], inputs[6], inputs7))
 
-def print_mass_percentage(partial_substance, whole_substance):
-    print(mass_percentage(partial_substance, whole_substance))
+def print_mass_percentages(substance):
+    components = get_substance_components(substance)
+    for component in components:
+        partial_substance = component['element'] + str(component['subscript'])
+        print(partial_substance, '=', mass_percentage(partial_substance, substance))
 
 def gibbs_free_energy():
     return
