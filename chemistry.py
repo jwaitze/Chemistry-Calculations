@@ -54,10 +54,10 @@ def atoms_to_moles(atoms):
 
 def break_element_object(element_object, coefficient='1'):
     element, element_start, element_length = {'moles': int(coefficient), 'element': '', 'subscript': 1}, 0, 0
-    for c in range(len(element_object)):
-        if element_object[c].isupper():
-            element_start, element_length = c, 1
-        elif element_object[c].islower():
+    for i, c in enumerate(element_object):
+        if c.isupper():
+            element_start, element_length = i, 1
+        elif c.islower():
             element_length += 1
     element['element'] = element_object[element_start:element_start + element_length]
     if element_start != 0:
@@ -409,7 +409,7 @@ def print_ideal_gas(atm1, liters1, moles1, kelvin1, atm2=None, liters2=None, mol
         print(ideal_gas(inputs[0], inputs[1], inputs[2], inputs[3]))
     else:
         print(ideal_gas_initial_final_state(inputs[0], inputs[1], inputs[2], inputs[3],
-                                            inputs[4], inputs[5], inputs[6], inputs7]))
+                                            inputs[4], inputs[5], inputs[6], inputs7))
 
 def gibbs_free_energy():
     return
