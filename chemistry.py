@@ -28,10 +28,10 @@ electromotive_potentials = load_json_database('electromotive_potentials.json')
 
 absolute_zero = -273.15
 
-def celcius_to_farenheit(temperature):
+def celcius_to_fahrenheit(temperature):
     return ((temperature*9)/5)+32
 
-def farenheit_to_celcius(temperature):
+def fahrenheit_to_celcius(temperature):
     return ((temperature-32)*5)/9
 
 def celcius_to_kelvin(temperature):
@@ -40,11 +40,11 @@ def celcius_to_kelvin(temperature):
 def kelvin_to_celcius(temperature):
     return temperature+absolute_zero
 
-def farenheit_to_kelvin(temperature):
-    return farenheit_to_celcius(celcius_to_kelvin(temperature))
+def fahrenheit_to_kelvin(temperature):
+    return fahrenheit_to_celcius(celcius_to_kelvin(temperature))
 
-def kelvin_to_farenheit(temperature):
-    return celcius_to_farenheit(kelvin_to_celcius(temperature))
+def kelvin_to_fahrenheit(temperature):
+    return celcius_to_fahrenheit(kelvin_to_celcius(temperature))
 
 def moles_to_atoms(moles):
     moles * (6.0221 * (10**23))
@@ -426,7 +426,7 @@ if __name__ == '__main__':
     sys.exit()
 
     result = print_stoichiometry('KClO3 --> KCl + O2', 'KClO3', moles_substance(39.498-38.388, 'KClO3'), 'O2')
-    print('or', ideal_gas(1, None, result['moles'], farenheit_to_kelvin(70.7)), 'liters of O2 gas at 70.7 °F')
+    print('or', ideal_gas(1, None, result['moles'], fahrenheit_to_kelvin(70.7)), 'liters of O2 gas at 70.7 °F')
 
     sys.exit()
 
