@@ -28,29 +28,29 @@ electromotive_potentials = load_json_database('electromotive_potentials.json')
 
 absolute_zero = -273.15
 
-def celcius_to_fahrenheit(temperature):
+def celsius_to_fahrenheit(temperature):
     return ((temperature*9)/5)+32
 
-def fahrenheit_to_celcius(temperature):
+def fahrenheit_to_celsius(temperature):
     return ((temperature-32)*5)/9
 
-def celcius_to_kelvin(temperature):
+def celsius_to_kelvin(temperature):
     return temperature-absolute_zero
 
-def kelvin_to_celcius(temperature):
+def kelvin_to_celsius(temperature):
     return temperature+absolute_zero
 
 def fahrenheit_to_kelvin(temperature):
-    return fahrenheit_to_celcius(celcius_to_kelvin(temperature))
+    return fahrenheit_to_celsius(celsius_to_kelvin(temperature))
 
 def kelvin_to_fahrenheit(temperature):
-    return celcius_to_fahrenheit(kelvin_to_celcius(temperature))
+    return celsius_to_fahrenheit(kelvin_to_celsius(temperature))
 
 def moles_to_atoms(moles):
-    moles * (6.0221 * (10**23))
+    return moles * (6.0221 * (10**23))
 
 def atoms_to_moles(atoms):
-    atoms / (6.0221 * (10**23))
+    return atoms / (6.0221 * (10**23))
 
 def break_element_object(element_object, coefficient='1'):
     element, element_start, element_length = {'moles': int(coefficient), 'element': '', 'subscript': 1}, 0, 0
@@ -491,14 +491,14 @@ if __name__ == '__main__':
 ##    How many moles of Cl2 are in a container (usually called a vessel) if the
 ##    pressure is 2.5 atm, the temperature is 27 C, and the volume is 50 L? R is,
 ##    of course, 0.0821 L atm mole-1 K- 1.
-    print(ideal_gas(2.5, 50, None, celcius_to_kelvin(27)))
+    print(ideal_gas(2.5, 50, None, celsius_to_kelvin(27)))
 
 ##    The density of a gas is measured at 1.853 g / L at 745.5 mmHg and 23.8 °C. What is its molar mass?
-    print(gas_density(1.853, celcius_to_kelvin(23.8), None, mmhg_to_atm(745.5)))
+    print(gas_density(1.853, celsius_to_kelvin(23.8), None, mmhg_to_atm(745.5)))
 
 ##    Anhydrous aluminum chloride sublimes at high temperatures.
 ##    What density will the vapor have at 225 degrees Celsius and 0.939 atm of pressure?
-    print(gas_density(None, celcius_to_kelvin(225), molar_mass('AlCl3'), 0.939))
+    print(gas_density(None, celsius_to_kelvin(225), molar_mass('AlCl3'), 0.939))
     sys.exit()
     
     print_moles_substance(5, 'Al2(SO4)3')
