@@ -1,5 +1,6 @@
 import sys, ast
 from sympy import *
+from time import sleep
 
 def get_file_contents(filepath):
     try:
@@ -305,10 +306,19 @@ def balance_chemical_equation(reaction_components):
                 v = chr(ord('a')+j)
                 answer = solveset(Eq(e['reactants'], e['products']), symbols(v))
                 for s in answer:
-                    if not str(s).isdigit():
+                    if ' ' in str(s) or '*' in str(s):
+                        continue
+                    if not str(s).isdigit() and '/' not in str(s) and '.' not in str(s):
+                        continue
+                    if not str(s)[0].isdigit() or not str(s)[-1].isdigit():
                         continue
                     if v not in coefficients:
-                        coefficients[v] = int(s)
+                        if '/' in str(s):
+                            coefficients[v] = str(s)#eval(str(s))
+                        elif '.' in str(s):
+                            coefficients[v] = float(s)
+                        else:
+                            coefficients[v] = int(s)
                     break
         for coefficient in coefficients:
             for e in equations:
@@ -325,19 +335,64 @@ def balance_chemical_equation(reaction_components):
                 result[side][-1][-1]['moles'] = coefficients[symbol]
             i += 1
     return result
+
+def reaction_components_to_string(reaction_components):
+    formula = ''
+    for component in reaction_components['reactants']:
+        if component[0]['moles'] != 1:
+            formula += str(component[0]['moles'])
+        for element in component:
+            formula += element['element']
+            if element['subscript'] != 1:
+                formula += str(element['subscript'])
+        formula += ' + '
+    formula = formula[:-3] + ' --> '
+    for component in reaction_components['products']:
+        if component[0]['moles'] != 1:
+            formula += str(component[0]['moles'])
+        for element in component:
+            formula += element['element']
+            if element['subscript'] != 1:
+                formula += str(element['subscript'])
+        formula += ' + '
+    formula = formula[:-3]
+    return formula
     
 if __name__ == '__main__':
-    reaction_components = get_reaction_components('CH4 + O2 --> CO2 + H2O')
+##    formula = 'C4H10 + O2 --> CO2 + H2O'
+##    formula = 'S8 + O3 --> SO2'
+##    formula = 'KFe3AlSi3O10(OH)2 + Cu + O2 + H2S --> KAlSi3O8 + CuFeS2 + H2O'
+##    formula = 'Na + H2O --> NaOH + H2'
+##    formula = 'Ca(OH)2 + H3PO4 --> Ca3(PO4)2 + H2O'
+##    formula = 'KClO3 --> KCl + O2'
+##    formula = 'Fe + O2 --> Fe2O3'
+##    formula = 'C2H6 + O2 --> CO2 + H2O'
+##    formula = 'Zn + HCl --> ZnCl2 + H2'
+##    formula = 'H2 + Cl2 --> HCl'
+##    formula = 'Al2(CO3)3 + H3PO4 --> AlPO4 + CO2 + H2O'
+##    formula = 'CH4 + O2 --> CO2 + H2O'
+##    formula = 'C5H12 + O2 --> CO2 + H2O'
+##    formula = 'FeCl3 + NH4OH --> Fe(OH)3 + NH4Cl'
+##    formula = 'S8 + F2 --> SF6'
+##    formula = 'P4 + O2 --> P2O5'
+##    formula = 'H2 + O3 --> H2O'
+##    formula = 'H2 + O2 --> H2O'
+    formula = 'CuSO4 + Al --> Al2(SO4)3 + Cu'
+    print(formula)
+    reaction_components = get_reaction_components(formula)
     balanced_components = balance_chemical_equation(reaction_components)
-    for side in reaction_components:
-        for component in reaction_components[side]:
-            print(component)
-        print()
-    print('\n')
-    for side in balanced_components:
-        for component in balanced_components[side]:
-            print(component)
-        print()
+##    for side in reaction_components:
+##        for component in reaction_components[side]:
+##            print(component)
+##        print()
+##    print('\n')
+##    for side in balanced_components:
+##        for component in balanced_components[side]:
+##            print(component)
+##        print()
+##    print()
+    balanced_formula = reaction_components_to_string(balanced_components)
+    print(balanced_formula)
     sys.exit()
 
 ##    2 Moles of a gas at a pressure of 2.00 atm occupies a volume of 22.4 L.
