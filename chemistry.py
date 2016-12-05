@@ -340,6 +340,9 @@ def balance_chemical_formula(reaction_components):
                             equations[-1][side] += str(e['subscript']) + '*' + c['variable'] + '+'
             for side in equations[-1]:
                 equations[-1][side] = sympify(equations[-1][side][:-1])
+    new_equations = [Eq(e['reactants'], e['products']) for e in equations]
+    solved = solve(new_equations)
+    equations = [{'reactants': k, 'products': solved[k]} for k in solved]
     equations_str, best_variable = ''.join([str(e['reactants']) + str(e['products']) for e in equations]), '-'
     for e in equations:
         if '+' not in str(e['reactants']) and '+' not in str(e['products']):
@@ -347,22 +350,18 @@ def balance_chemical_formula(reaction_components):
                 if equations_str.count(str(e[side])[-1]) >= equations_str.count(best_variable):
                     best_variable = str(e[side])[-1]
     symbol = symbols(best_variable)
-##    print(equations)
     for e in equations:
         for side in e:
             if str(symbol) in str(e[side]):
                 e[side] = e[side].subs(symbol, 1)
                 coefficients[str(symbol)] = 1
     while len(coefficients) != i:
-##        print(equations)
-##        print(coefficients)
         for e in equations:
             if Eq(e['reactants'], e['products']) == True:
                 continue
             for j in range(i):
                 v = chr(ord('a')+j)
                 answer = solveset(Eq(e['reactants'], e['products']), symbols(v))
-##                print(answer)
                 for s in answer:
                     if ' ' in str(s) or '*' in str(s):
                         continue
@@ -541,10 +540,12 @@ if __name__ == '__main__':
     print_balance_chemical_formula('S8 + F2 --> SF6')
     print_balance_chemical_formula('P4 + O2 --> P2O5')
     print_balance_chemical_formula('FeCl3 + NH4OH --> Fe(OH)3 + NH4Cl')
+    print_balance_chemical_formula('P2I4 + P4 + H2O --> PH4I + H3PO4')
+    print_balance_chemical_formula('Cu + HNO3 --> Cu(NO3)2 + NO2 + H2O')
+    print_balance_chemical_formula('S + HNO3 --> H2SO4 + NO2 + H2O')
     
     sys.exit()
     
-    formula = 'Cu + HNO3 --> Cu(NO3)2 + NO2 + H2O' # need to make these two work
     formula = 'S + HNO3 --> H2SO4 + NO2 + H2O'
     print(formula)
     reaction_components = get_reaction_components(formula)
