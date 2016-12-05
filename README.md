@@ -73,5 +73,3 @@ print_ideal_gas(atm1, liters1, moles1, kelvin1, atm2=None, liters2=None, moles2=
 print_mass_percentages(substance)  
 print_periodic_table_retrieve(search_term, element)  
 print_periodic_table_closest(search_term, max_results, column_search_term=None)
-
-gibbs_free_energy()

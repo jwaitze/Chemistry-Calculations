@@ -125,7 +125,17 @@ def get_substance_components(substance):
             parenthesis_opened = True
             components.extend(break_component_section(substance[i:]))
     components = [break_element_object(''.join(component), coefficient) for component in components]
-    return components
+    elements = []
+    for component in components:
+        if component['element'] not in elements:
+            elements.append(component['element'])
+    for e in range(len(elements)):
+        elements[e] = {'element': elements[e], 'subscript': 0}
+        for component in components:
+            if component['element'] == elements[e]['element']:
+                elements[e]['moles'] = component['moles']
+                elements[e]['subscript'] += component['subscript']
+    return elements
 
 def get_reaction_components(formula):
     f, sides, left, right, right_components, left_components = formula.replace(' ', ''), [], [], [], [], [] 
@@ -323,7 +333,7 @@ def balance_chemical_formula(reaction_components):
             equations.append({'reactants': str(element['subscript']) + '*' + component['variable'] + '+', 'products': ''})
             for side in equation_components:
                 for c in equation_components[side]:
-                    if c['variable'] == component['variable']: # i will likely have to change this
+                    if c['variable'] == component['variable']:
                         continue
                     for e in c['component']:
                         if e['element'] == element['element']:
@@ -456,9 +466,6 @@ def print_mass_percentages(substance):
         print(percentage['substance'], '=', percentage['percentage'])
     return mass_percentages
 
-def gibbs_free_energy():
-    return
-
 def print_periodic_table_retrieve(search_term, element):
     search_results = periodic_table_retrieve(search_term, element)
     for row in search_results:
@@ -470,6 +477,18 @@ def print_periodic_table_closest(search_term, max_results, column_search_term=No
     for i, row in enumerate(results):
         print(str(i) + ':', row['detail'], 'of', row['element'] + '(' + row['symbol'] + ')', 'is', row['value'])
     return results
+
+def gibbs_free_energy():
+    return
+
+def specific_heat():
+    return
+
+def entropy():
+    return
+
+def enthalpy():
+    return
     
 if __name__ == '__main__':
 
