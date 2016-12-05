@@ -1,4 +1,4 @@
-import sys, ast
+import sys, ast, math
 from sympy import *
 
 def get_file_contents(filepath):
@@ -170,15 +170,7 @@ def max_reactivity(metal_one, metal_two):
     else:
         return metal_two
 
-def locate_periodic_table_row(search_term, key=None):
-    if key != None:
-        for row in range(len(periodic_table)):
-            if str(search_term) == str(periodic_table[row][key]):
-                return row
-        for row in range(len(periodic_table)):
-            if str(search_term) in str(periodic_table[row][key]):
-                return row
-        return -1
+def locate_periodic_table_row(search_term):
     for row in range(len(periodic_table)):
         if type(search_term) is int:
             if search_term == periodic_table[row]['number'] or search_term == periodic_table[row]['atomic_number']:
@@ -194,6 +186,35 @@ def locate_periodic_table_row(search_term, key=None):
 
 def get_periodic_table_details_list():
     return [key for key in periodic_table[0]]
+
+def locate_periodic_table_column(search_term):
+    keys, results = get_periodic_table_details_list(), []
+    for i, k in enumerate(keys):
+        if search_term in k:
+            results.append({'column': i, 'header': k})
+    return results
+
+def periodic_table_retrieve(term, element):
+    results = []
+    columns = locate_periodic_table_column(term)
+    row = locate_periodic_table_row(element)
+    for column in columns:
+        results.append({'value': periodic_table[row][column['header']], 'header': column['header']})
+    return results
+
+def periodic_table_closest(term, max_results):
+    results, keys = [], get_periodic_table_details_list()
+    for result in range(max_results):
+        r = {'value': 10**6}
+        for key in keys:
+            for element in periodic_table:
+                if type(element[key]) is not int and type(element[key]) is not float:
+                    continue
+                new = {'value': element[key], 'element': element['name'], 'symbol': element['symbol'], 'detail': key}
+                if math.fabs(term - element[key]) <= math.fabs(term - r['value']) and new not in results:
+                    r = new.copy()
+        results.append(r)
+    return results
 
 def molar_mass(substance):
     components, grams_per_mole = get_substance_components(substance), 0
@@ -434,6 +455,18 @@ def print_mass_percentages(substance):
 
 def gibbs_free_energy():
     return
+
+def print_periodic_table_retrieve(search_term, element):
+    search_results = periodic_table_retrieve(search_term, element)
+    for row in search_results:
+        print(row)
+    return search_results
+
+def print_periodic_table_closest(search_term):
+    results = periodic_table_closest(search_term, 25)
+    for i, row in enumerate(results):
+        print(str(i) + ':', row['detail'], 'of', row['element'] + '(' + row['symbol'] + ')', 'is', row['value'])
+    return results
     
 if __name__ == '__main__':
 
