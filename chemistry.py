@@ -202,18 +202,21 @@ def periodic_table_retrieve(term, element):
         results.append({'value': periodic_table[row][column['header']], 'header': column['header']})
     return results
 
-def periodic_table_closest(term, max_results):
+def periodic_table_closest(value_term, max_results, column_search_term=None):
     results, keys = [], get_periodic_table_details_list()
     for result in range(max_results):
-        r = {'value': 10**6}
+        closest = {'value': 10**6}
         for key in keys:
+            if column_search_term is not None:
+                if column_search_term not in key:
+                    continue
             for element in periodic_table:
                 if type(element[key]) is not int and type(element[key]) is not float:
                     continue
-                new = {'value': element[key], 'element': element['name'], 'symbol': element['symbol'], 'detail': key}
-                if math.fabs(term - element[key]) <= math.fabs(term - r['value']) and new not in results:
-                    r = new.copy()
-        results.append(r)
+                next_closest = {'value': element[key], 'element': element['name'], 'symbol': element['symbol'], 'detail': key}
+                if math.fabs(value_term - element[key]) <= math.fabs(value_term - closest['value']) and next_closest not in results:
+                    closest = next_closest.copy()
+        results.append(closest)
     return results
 
 def molar_mass(substance):
@@ -462,8 +465,8 @@ def print_periodic_table_retrieve(search_term, element):
         print(row)
     return search_results
 
-def print_periodic_table_closest(search_term):
-    results = periodic_table_closest(search_term, 25)
+def print_periodic_table_closest(search_term, max_results, column_search_term=None):
+    results = periodic_table_closest(search_term, max_results, column_search_term)
     for i, row in enumerate(results):
         print(str(i) + ':', row['detail'], 'of', row['element'] + '(' + row['symbol'] + ')', 'is', row['value'])
     return results

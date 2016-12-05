@@ -28,7 +28,7 @@ locate_periodic_table_row(search_term)
 get_periodic_table_details_list()  
 locate_periodic_table_column(search_term)  
 periodic_table_retrieve(term, element)
-periodic_table_closest(term, max_results)
+periodic_table_closest(term, max_results, column_search_term=None)
 
 celsius_to_fahrenheit(temperature)  
 fahrenheit_to_celsius(temperature)  
@@ -72,6 +72,6 @@ print_stoichiometry(formula, reference_component, moles_reference_component, tar
 print_ideal_gas(atm1, liters1, moles1, kelvin1, atm2=None, liters2=None, moles2=None, kelvin2=None)  
 print_mass_percentages(substance)  
 print_periodic_table_retrieve(search_term, element)
-print_periodic_table_closest(search_term)
+print_periodic_table_closest(search_term, max_results, column_search_term=None)
 
 gibbs_free_energy()
