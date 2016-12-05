@@ -347,18 +347,22 @@ def balance_chemical_formula(reaction_components):
                 if equations_str.count(str(e[side])[-1]) >= equations_str.count(best_variable):
                     best_variable = str(e[side])[-1]
     symbol = symbols(best_variable)
+##    print(equations)
     for e in equations:
         for side in e:
             if str(symbol) in str(e[side]):
                 e[side] = e[side].subs(symbol, 1)
                 coefficients[str(symbol)] = 1
     while len(coefficients) != i:
+##        print(equations)
+##        print(coefficients)
         for e in equations:
             if Eq(e['reactants'], e['products']) == True:
                 continue
             for j in range(i):
                 v = chr(ord('a')+j)
                 answer = solveset(Eq(e['reactants'], e['products']), symbols(v))
+##                print(answer)
                 for s in answer:
                     if ' ' in str(s) or '*' in str(s):
                         continue
@@ -540,7 +544,7 @@ if __name__ == '__main__':
     
     sys.exit()
     
-    formula = 'Cu + HNO3 --> Cu(NO3)2 + NO + H2O' # need to make these two work
+    formula = 'Cu + HNO3 --> Cu(NO3)2 + NO2 + H2O' # need to make these two work
     formula = 'S + HNO3 --> H2SO4 + NO2 + H2O'
     print(formula)
     reaction_components = get_reaction_components(formula)
