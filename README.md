@@ -44,6 +44,7 @@ molar_mass(substance)
 moles_substance(grams, substance)  
 mass_substance(moles, substance)  
 molarity(moles, liters)  
+moles_from_molarity(molarity, liters)
 molarity_from_mass(grams, substance, liters)  
 moles_ideal_gas(liters)  
 moles_to_liters_gas(moles)  
@@ -64,6 +65,8 @@ max_reactivity(metal_one, metal_two)
 
 balance_chemical_formula(reaction_components)  
 stoichiometry(formula, reference_component, moles_limiting_reagent, target_component)
+
+def osmotic_pressure(molarity, kelvin, vanthoff_factor)
 
 print_moles_substance(grams, substance)  
 print_mass_substance(moles, substance)  

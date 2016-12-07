@@ -245,6 +245,9 @@ def mass_substance(moles, substance):
 def molarity(moles, liters):
     return moles / liters
 
+def moles_from_molarity(molarity, liters):
+    return molarity * liters
+
 def molarity_from_mass(grams, substance, liters):
     return moles_substance(grams, substance) / liters
                        
@@ -492,8 +495,19 @@ def entropy():
 
 def enthalpy():
     return
+
+def osmotic_pressure(molarity, kelvin, vanthoff_factor):
+    R = 0.08206 # atm / mol K
+    return vanthoff_factor * molarity * R * kelvin
     
 if __name__ == '__main__':
+
+    sys.exit()
+
+    print(osmotic_pressure(molarity(moles_substance(5, 'C6H12O6'), 0.1), fahrenheit_to_kelvin(70.1), 1))
+    print(osmotic_pressure(molarity(moles_substance(210, 'C12H22O11'), 0.1), fahrenheit_to_kelvin(70.1), 1))
+    print(osmotic_pressure(molarity(moles_substance(74.5, 'CaCl2'), 0.1), fahrenheit_to_kelvin(70.1), 3))
+    print(osmotic_pressure(molarity(moles_substance(35.9, 'NaCl'), 0.1), fahrenheit_to_kelvin(70.1), 2))
 
     sys.exit()
 
