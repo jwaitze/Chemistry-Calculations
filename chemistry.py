@@ -345,6 +345,8 @@ def balance_chemical_formula(reaction_components):
                 equations[-1][side] = sympify(equations[-1][side][:-1])
     new_equations = [Eq(e['reactants'], e['products']) for e in equations]
     solved = solve(new_equations)
+    if type(solved) is list:
+        solved = solved[0]
     equations = [{'reactants': k, 'products': solved[k]} for k in solved]
     equations_str, best_variable = ''.join([str(e['reactants']) + str(e['products']) for e in equations]), '-'
     for e in equations:
@@ -504,7 +506,29 @@ def osmotic_pressure(molarity, kelvin, vanthoff_factor):
     return vanthoff_factor * molarity * R * kelvin
     
 if __name__ == '__main__':
-
+    
+    print_balance_chemical_formula('C2H6 + O2 --> CO2 + H2O')
+    print_balance_chemical_formula('C4H10 + O2 --> CO2 + H2O')
+    print_balance_chemical_formula('S8 + O3 --> SO2')
+    print_balance_chemical_formula('KFe3AlSi3O10(OH)2 + Cu + O2 + H2S --> KAlSi3O8 + CuFeS2 + H2O')
+    print_balance_chemical_formula('Ca(OH)2 + H3PO4 --> Ca3(PO4)2 + H2O')
+    print_balance_chemical_formula('KClO3 --> KCl + O2')
+    print_balance_chemical_formula('Fe + O2 --> Fe2O3')
+    print_balance_chemical_formula('C2H6 + O2 --> CO2 + H2O')
+    print_balance_chemical_formula('Zn + HCl --> ZnCl2 + H2')
+    print_balance_chemical_formula('H2 + Cl2 --> HCl')
+    print_balance_chemical_formula('Al2(CO3)3 + H3PO4 --> AlPO4 + CO2 + H2O')
+    print_balance_chemical_formula('C5H12 + O2 --> CO2 + H2O')
+    print_balance_chemical_formula('CuSO4 + Al --> Al2(SO4)3 + Cu')
+    print_balance_chemical_formula('H2 + O2 --> H2O')
+    print_balance_chemical_formula('H2 + O3 --> H2O')
+    print_balance_chemical_formula('S8 + F2 --> SF6')
+    print_balance_chemical_formula('P4 + O2 --> P2O5')
+    print_balance_chemical_formula('FeCl3 + NH4OH --> Fe(OH)3 + NH4Cl')
+    print_balance_chemical_formula('P2I4 + P4 + H2O --> PH4I + H3PO4')
+    print_balance_chemical_formula('Cu + HNO3 --> Cu(NO3)2 + NO2 + H2O')
+    print_balance_chemical_formula('S + HNO3 --> H2SO4 + NO2 + H2O')
+    
     sys.exit()
 
     print(osmotic_pressure(molarity(moles_substance(5, 'C6H12O6'), 0.1), fahrenheit_to_kelvin(70.1), 1))
@@ -537,30 +561,6 @@ if __name__ == '__main__':
     result = print_stoichiometry('C2H6 + O2 --> CO2 + H2O', 'C2H6', moles_substance(20, 'C2H6'), 'O2')
     print('or', moles_to_liters_gas(result['moles']), 'liters of O2 gas at STP')
 
-    sys.exit()
-    
-    print_balance_chemical_formula('C2H6 + O2 --> CO2 + H2O')
-    print_balance_chemical_formula('C4H10 + O2 --> CO2 + H2O')
-    print_balance_chemical_formula('S8 + O3 --> SO2')
-    print_balance_chemical_formula('KFe3AlSi3O10(OH)2 + Cu + O2 + H2S --> KAlSi3O8 + CuFeS2 + H2O')
-    print_balance_chemical_formula('Ca(OH)2 + H3PO4 --> Ca3(PO4)2 + H2O')
-    print_balance_chemical_formula('KClO3 --> KCl + O2')
-    print_balance_chemical_formula('Fe + O2 --> Fe2O3')
-    print_balance_chemical_formula('C2H6 + O2 --> CO2 + H2O')
-    print_balance_chemical_formula('Zn + HCl --> ZnCl2 + H2')
-    print_balance_chemical_formula('H2 + Cl2 --> HCl')
-    print_balance_chemical_formula('Al2(CO3)3 + H3PO4 --> AlPO4 + CO2 + H2O')
-    print_balance_chemical_formula('C5H12 + O2 --> CO2 + H2O')
-    print_balance_chemical_formula('CuSO4 + Al --> Al2(SO4)3 + Cu')
-    print_balance_chemical_formula('H2 + O2 --> H2O')
-    print_balance_chemical_formula('H2 + O3 --> H2O')
-    print_balance_chemical_formula('S8 + F2 --> SF6')
-    print_balance_chemical_formula('P4 + O2 --> P2O5')
-    print_balance_chemical_formula('FeCl3 + NH4OH --> Fe(OH)3 + NH4Cl')
-    print_balance_chemical_formula('P2I4 + P4 + H2O --> PH4I + H3PO4')
-    print_balance_chemical_formula('Cu + HNO3 --> Cu(NO3)2 + NO2 + H2O')
-    print_balance_chemical_formula('S + HNO3 --> H2SO4 + NO2 + H2O')
-    
     sys.exit()
     
     formula = 'S + HNO3 --> H2SO4 + NO2 + H2O'
