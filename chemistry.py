@@ -350,8 +350,11 @@ def balance_chemical_formula(reaction_components):
     for e in equations:
         if '+' not in str(e['reactants']) and '+' not in str(e['products']):
             for side in e:
-                if equations_str.count(str(e[side])[-1]) >= equations_str.count(best_variable):
-                    best_variable = str(e[side])[-1]
+                v = str(e[side])[-1]
+                if not v.isupper() and not v.islower():
+                    continue
+                if equations_str.count(v) >= equations_str.count(best_variable):
+                    best_variable = v
     symbol = symbols(best_variable)
     for e in equations:
         for side in e:
