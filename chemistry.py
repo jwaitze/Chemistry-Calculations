@@ -568,7 +568,9 @@ def lookup_term_wikipedia(term):
 def print_lookup_term_wikipedia(term):
     data = lookup_term_wikipedia(term)
     for row in data:
-        print(row[0] + ':', row[1])
+        if row[0][-1] != ':':
+            row[0] += ':'
+        print(row[0], row[1])
 
 def print_lookup(term):
     print_lookup_term_wikipedia(term)
