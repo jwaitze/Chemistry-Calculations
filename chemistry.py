@@ -559,17 +559,12 @@ def get_data_from_wikipedia(term):
     return data
 
 def lookup_term_wikipedia(term):
-    result, data = [], get_data_from_wikipedia(term)
-    for row in data:
-        if len(row[0]) > 0 and len(str(row[1])) > 0:
-            result.append(row)
-    return result
+    data = get_data_from_wikipedia(term)
+    return [row for row in data if len(row[0]) > 0 and len(str(row[1])) > 0]
 
 def print_lookup_term_wikipedia(term):
-    data = lookup_term_wikipedia(term)
+    data = [[row[0] + ':', row[1]] if row[0][-1] != ':' else row for row in lookup_term_wikipedia(term)]
     for row in data:
-        if row[0][-1] != ':':
-            row[0] += ':'
         print(row[0], row[1])
 
 def print_lookup(term):
