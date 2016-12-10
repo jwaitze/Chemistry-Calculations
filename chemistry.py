@@ -569,8 +569,13 @@ def print_lookup_term_wikipedia(term):
     data = lookup_term_wikipedia(term)
     for row in data:
         print(row[0] + ':', row[1])
+
+def print_lookup(term):
+    print_lookup_term_wikipedia(term)
     
 if __name__ == '__main__':
+
+    sys.exit()
 
     print_lookup_term_wikipedia('Al2(SO4)3')
 
@@ -627,8 +632,7 @@ if __name__ == '__main__':
 
     sys.exit()
 
-    result = print_stoichiometry('C2H6 + O2 --> CO2 + H2O', 'C2H6', moles_substance(20, 'C2H6'), 'O2')
-    print('or', moles_to_liters_gas(result['moles']), 'liters of O2 gas at STP')
+    print(moles_to_liters_gas(stoichiometry('C2H6 + O2 --> CO2 + H2O', 'C2H6', moles_substance(20, 'C2H6'), 'O2')['moles']), 'liters of O2 gas at STP')
 
     sys.exit()
     

@@ -68,10 +68,11 @@ stoichiometry(formula, reference_component, moles_limiting_reagent, target_compo
 
 osmotic_pressure(molarity, kelvin, vanthoff_factor)
 
-process_raw_wikipedia_table(detail, strip_extraneous_characters)
-get_data_from_wikipedia(term)
-lookup_term_wikipedia(term)
-print_lookup_term_wikipedia(term)
+process_raw_wikipedia_table(detail, strip_extraneous_characters)  
+get_data_from_wikipedia(term)  
+lookup_term_wikipedia(term)  
+print_lookup_term_wikipedia(term)  
+print_lookup(term)
 
 print_moles_substance(grams, substance)  
 print_mass_substance(moles, substance)  
@@ -81,3 +82,33 @@ print_ideal_gas(atm1, liters1, moles1, kelvin1, atm2=None, liters2=None, moles2=
 print_mass_percentages(substance)  
 print_periodic_table_retrieve(search_term, element)  
 print_periodic_table_closest(search_term, max_results, column_search_term=None)
+
+## Usage Examples
+
+Returns data available from the infoboxes on Wikipedia:  
+print_lookup('Al2(SO4)3')  
+print_lookup('CuSO4')  
+print_lookup('H2SO4')  
+print_lookup('Hydrogen')
+
+Returns the amount of moles for a given mass of a substance
+print_moles_substance(36.4, 'CuSO4')  
+print_moles_substance(100, 'H2O')  
+print_moles_substance(molar_mass('H2O'), 'H2O') This will always return 1 as long as the input substances match  
+
+Returns the mass of a given amount of moles of a substance
+print_mass_substance(2, 'MgSO4(H2O)7') mass of 2 moles of magnesium sulfate heptahydrate  
+
+Any of the following formats are fine:  
+print_balance_chemical_formula('C2H6 + O2 --> CO2 + H2O')  
+print_balance_chemical_formula('C4H10 + O2 -> CO2 + H2O')  
+print_balance_chemical_formula('FeCl3 + NH4OH > Fe(OH)3 + NH4Cl')  
+print_balance_chemical_formula('P2I4 + P4 + H2O --> PH4I + H3PO4')  
+print_balance_chemical_formula('Cu+HNO3-->Cu(NO3)2+NO2+H2O')  
+print_balance_chemical_formula('S+HNO3-> H2SO4 + NO2 + H2O')
+
+Solves stoichiometry calculations (automates balancing, moles conversions, and substance ratios):
+print_stoichiometry('C6H12O6 + O2 --> CO2 + H2O', 'O2', 1.03*(10**-2), 'C6H12O6') Grams of glucose the human body consumes each minute if 1.03 x 10^-2 mol O2 is used for cellular respiration each minute  
+print_stoichiometry('CuSO4 + Al --> Al2(SO4)3 + Cu', 'CuSO4', moles_substance(5, 'CuSO4(H2O)5'), 'Al') How much aluminum is needed to react with 5 grams of copper(II) sulfate pentahydrate?  
+print(moles_to_liters_gas(stoichiometry('C2H6 + O2 --> CO2 + H2O', 'C2H6', moles_substance(20, 'C2H6'), 'O2')['moles']), 'liters of O2 gas at STP') How many liters of O2 is needed to react with 20 g of ethane?
+
