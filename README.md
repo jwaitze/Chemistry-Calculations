@@ -108,7 +108,7 @@ print_balance_chemical_formula('Cu+HNO3-->Cu(NO3)2+NO2+H2O')
 print_balance_chemical_formula('S+HNO3-> H2SO4 + NO2 + H2O')
 
 Solves stoichiometry calculations (automates balancing, moles conversions, and substance ratios):  
-print_stoichiometry('C6H12O6 + O2 --> CO2 + H2O', 'O2', 1.03*(10**-2), 'C6H12O6') Grams of glucose the human body consumes each minute if 1.03 x 10^-2 mol O2 is used for cellular respiration each minute  
+print_stoichiometry('C6H12O6 + O2 --> CO2 + H2O', 'O2', 1.03**(10***-2), 'C6H12O6') Grams of glucose the human body consumes each minute if 1.03 x 10^-2 mol O2 is used for cellular respiration each minute  
 print_stoichiometry('CuSO4 + Al --> Al2(SO4)3 + Cu', 'CuSO4', moles_substance(5, 'CuSO4(H2O)5'), 'Al') How much aluminum is needed to react with 5 grams of copper(II) sulfate pentahydrate?  
 print(moles_to_liters_gas(stoichiometry('C2H6 + O2 --> CO2 + H2O', 'C2H6', moles_substance(20, 'C2H6'), 'O2')['moles']), 'liters of O2 gas at STP') How many liters of O2 is needed to react with 20 g of ethane?
 
