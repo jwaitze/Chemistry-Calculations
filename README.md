@@ -96,7 +96,7 @@ print_moles_substance(36.4, 'CuSO4')
 print_moles_substance(100, 'H2O')  
 print_moles_substance(molar_mass('H2O'), 'H2O') This will always return 1 as long as the input substances match  
 
-Returns the mass of a given amount of moles of a substance
+Returns the mass of a given amount of moles of a substance  
 print_mass_substance(2, 'MgSO4(H2O)7') mass of 2 moles of magnesium sulfate heptahydrate  
 
 Any of the following formats are fine:  
