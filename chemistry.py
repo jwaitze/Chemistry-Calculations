@@ -1,5 +1,6 @@
-import sys, ast, math
+import sys, ast, math, requests
 from sympy import *
+from bs4 import BeautifulSoup
 
 def get_file_contents(filepath):
     try:
@@ -254,12 +255,10 @@ def molarity_from_mass(grams, substance, liters):
 def print_moles_substance(grams, substance):
     moles = moles_substance(grams, substance)
     print(str(grams) + ' grams of ' + substance + ' = ' + str(moles) + ' moles')
-    return moles
 
 def print_mass_substance(moles, substance):
     grams = mass_substance(moles, substance)
     print(str(moles) + ' moles of ' + substance + ' = ' + str(grams) + ' grams')
-    return grams
 
 def mmhg_to_atm(mmhg):
     return mmhg / 760
@@ -428,7 +427,6 @@ def print_balance_chemical_formula(formula):
     balanced_components = balance_chemical_formula(reaction_components)
     balanced_formula = reaction_components_to_string(balanced_components)
     print(balanced_formula)
-    return balanced_components
 
 def stoichiometry(formula, reference_component, moles_limiting_reagent, target_component):
     reaction_components = get_reaction_components(formula)
@@ -459,7 +457,6 @@ def print_stoichiometry(formula, reference_component, moles_reference_component,
     print(reference_component, '->', moles_reference_component, 'moles or',
           mass_substance(moles_reference_component, reference_component), 'grams')
     print(target_component, '->', result['moles'], 'moles or', result['grams'], 'grams')
-    return result
 
 def print_ideal_gas(atm1, liters1, moles1, kelvin1, atm2=None, liters2=None, moles2=None, kelvin2=None):
     inputs, result = [atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2], 0
@@ -469,25 +466,21 @@ def print_ideal_gas(atm1, liters1, moles1, kelvin1, atm2=None, liters2=None, mol
         result = ideal_gas_initial_final_state(inputs[0], inputs[1], inputs[2], inputs[3],
                                             inputs[4], inputs[5], inputs[6], inputs7)
     print(result)
-    return result
 
 def print_mass_percentages(substance):
     mass_percentages = get_mass_percentages(substance)
     for percentage in mass_percentages:
         print(percentage['substance'], '=', percentage['percentage'])
-    return mass_percentages
 
 def print_periodic_table_retrieve(search_term, element):
     search_results = periodic_table_retrieve(search_term, element)
     for row in search_results:
         print(row)
-    return search_results
 
 def print_periodic_table_closest(search_term, max_results, column_search_term=None):
     results = periodic_table_closest(search_term, max_results, column_search_term)
     for i, row in enumerate(results):
         print(str(i) + ':', row['detail'], 'of', row['element'] + '(' + row['symbol'] + ')', 'is', row['value'])
-    return results
 
 def gibbs_free_energy():
     return
@@ -504,8 +497,84 @@ def enthalpy():
 def osmotic_pressure(molarity, kelvin, vanthoff_factor):
     R = 0.08206 # atm / mol K
     return vanthoff_factor * molarity * R * kelvin
+
+def process_raw_wikipedia_table(detail, strip_extraneous_characters):
+    body = detail[1].replace('\xa0', ' ').replace('\u200b', '').strip()
+    title = detail[0].lower().replace(', ', '_').replace('\xa0', ' ')
+    title = title.replace(' ', '_').replace('.', '').strip()
+    title = title.replace('\'', '').replace('\n', '')
+    for i in range(1, 25):
+        title = title.replace('[' + str(i) + ']', '')
+        body = body.replace('[' + str(i) + ']', '')
+    if body.replace('-', '').replace('.', '').isdigit() and '-' not in body[1:] and body.count('.') < 2:
+        if '.' in body:
+            body = float(body)
+        else:
+            body = int(body)
+    extraneous_delimeters = ']) '
+    if strip_extraneous_characters and type(body) is str and sum([1 for e in extraneous_delimeters if e in body]) != 0:
+        stripped = body
+        for e in extraneous_delimeters:
+            if e in stripped:
+                stripped = stripped[:stripped.index(e)]
+        strip_chars = '[(,' + extraneous_delimeters
+        for c in strip_chars:
+            stripped = stripped.replace(c, '')
+        if stripped.replace('.', '').replace('-', '').isdigit() and '-' not in stripped[1:] and stripped.count('.') < 2:
+            if '.' in stripped:
+                body = float(stripped)
+            else:
+                body = int(stripped)
+    if type(body) is str:
+        split_delimeters = [', ', '\n']
+        for s in split_delimeters:
+            if s in body:
+                body = body.split(s)
+                body = [d for d in body if len(d) != 0 and d != ' ']
+    if type(body) is list:
+        body = ', '.join(body)
+    return title, body
+
+def get_data_from_wikipedia(term):
+    data = []
+    url = 'https://en.wikipedia.org/wiki/%s' % term
+    r = requests.get(url)
+    soup = BeautifulSoup(r.content, 'html.parser')
+    infoboxes = soup.find_all('table', 'infobox')
+    trs = infoboxes[0].find_all('tr')
+    for tr in trs:
+        ths = tr.find_all('th')
+        tds = tr.find_all('td')
+        try:
+            if len(ths[0].text) > 0 and len(tds[0].text) > 0:
+                data.append([ths[0].text, tds[0].text])
+        except:
+            try:
+                if len(tds[0].text) > 0 and len(tds[1].text) > 0:
+                    data.append([tds[0].text, tds[1].text])
+            except:
+                pass
+    for detail in data:
+        detail[0], detail[1] = process_raw_wikipedia_table(detail, False)
+    return data
+
+def lookup_term_wikipedia(term):
+    result, data = [], get_data_from_wikipedia(term)
+    for row in data:
+        if len(row[0]) > 0 and len(str(row[1])) > 0:
+            result.append(row)
+    return result
+
+def print_lookup_term_wikipedia(term):
+    data = lookup_term_wikipedia(term)
+    for row in data:
+        print(row[0] + ':', row[1])
     
 if __name__ == '__main__':
+
+    print_lookup_term_wikipedia('Al2(SO4)3')
+
+    sys.exit()
     
     print_balance_chemical_formula('C2H6 + O2 --> CO2 + H2O')
     print_balance_chemical_formula('C4H10 + O2 --> CO2 + H2O')

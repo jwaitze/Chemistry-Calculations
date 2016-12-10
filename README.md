@@ -66,7 +66,12 @@ max_reactivity(metal_one, metal_two)
 balance_chemical_formula(reaction_components)  
 stoichiometry(formula, reference_component, moles_limiting_reagent, target_component)
 
-def osmotic_pressure(molarity, kelvin, vanthoff_factor)
+osmotic_pressure(molarity, kelvin, vanthoff_factor)
+
+process_raw_wikipedia_table(detail, strip_extraneous_characters)
+get_data_from_wikipedia(term)
+lookup_term_wikipedia(term)
+print_lookup_term_wikipedia(term)
 
 print_moles_substance(grams, substance)  
 print_mass_substance(moles, substance)  
