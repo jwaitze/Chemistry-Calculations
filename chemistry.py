@@ -537,7 +537,7 @@ def process_raw_wikipedia_table(detail, strip_extraneous_characters):
 
 def get_data_from_wikipedia(term):
     data = []
-    url = 'https://en.wikipedia.org/wiki/%s' % term
+    url = 'https://en.wikipedia.org/wiki/%s' % term.replace(' ', '_')
     r = requests.get(url)
     soup = BeautifulSoup(r.content, 'html.parser')
     infoboxes = soup.find_all('table', 'infobox')
