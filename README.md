@@ -89,7 +89,9 @@ Returns data available from the infoboxes on Wikipedia:
 print_lookup('Al2(SO4)3')  
 print_lookup('CuSO4')  
 print_lookup('H2SO4')  
-print_lookup('Hydrogen')
+print_lookup('Hydrogen')  
+print_lookup('donald duck')  
+print_lookup('toast')
 
 Returns the amount of moles for a given mass of a substance
 print_moles_substance(36.4, 'CuSO4')  
