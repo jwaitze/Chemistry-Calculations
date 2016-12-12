@@ -237,6 +237,9 @@ def molar_mass(substance):
         grams_per_mole += periodic_table[row]['atomic_weight'] * component['subscript']
     return grams_per_mole
 
+def print_molar_mass(substance):
+    print(molar_mass(substance))
+
 def moles_substance(grams, substance):
     return grams / molar_mass(substance)
 
@@ -291,6 +294,11 @@ def get_mass_percentages(substance):
         percentage = molar_mass(partial_substance) / molar_mass(substance)
         result.append({'substance': partial_substance, 'percentage': percentage})
     return result
+
+def print_get_mass_percentages(substance):
+    percentages = get_mass_percentages(substance)
+    for p in percentages:
+        print(p['substance'] + ':', p['percentage'])
 
 def ideal_gas_initial_final_state(atm1, liters1, moles1, kelvin1, atm2, liters2, moles2, kelvin2):
     R = 0.08205746
@@ -569,6 +577,27 @@ def print_lookup_term_wikipedia(term):
 
 def print_lookup(term):
     print_lookup_term_wikipedia(term)
+
+def c(*x):
+    xl = len(x)
+    if xl == 0:
+        print(get_file_contents('print_help.txt'))
+    elif xl == 1:
+        if type(x[0]) is str:
+            if '+' in x[0] and '>' in x[0]:
+                print_balance_chemical_formula(x[0])
+            elif x[0][:4].lower() == 'mm: ':
+                print_molar_mass(x[0][4:])
+            elif x[0][:4] == 'm%: ':
+                print_get_mass_percentages(x[0][4:])
+            else:
+                print_lookup(term)
+        else:
+            print_periodic_table_closest(x[0], 10)
+    elif xl == 2:
+        print_moles_substance(x[0], x[1])
+    elif xl == 4:
+        print_stoichiometry(x[0], x[1], x[2], x[3])
     
 if __name__ == '__main__':
 
